@@ -55,14 +55,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }else {
             Cursor x =getContentResolver().query(ZodisContract.RootEntry.CONTENT_URI,null,null,null,null);
             Cursor y =getContentResolver().query(ZodisContract.DerivedEntry.CONTENT_URI,null,null,null,null);
+            Cursor z =getContentResolver().query(ZodisContract.LevelEntry.CONTENT_URI,null,null,null,null);
 
-            if (x!=null && x.getCount()>0) {
-                Toast.makeText(this, ""+x.getCount(), Toast.LENGTH_SHORT).show();
+            if (z!=null) {
+                Toast.makeText(this, ""+z.getCount(), Toast.LENGTH_SHORT).show();
             }
 
-            if (y!=null && y.getCount()>0) {
-                Toast.makeText(this, ""+ y.getCount(), Toast.LENGTH_SHORT).show();
-            }
         }
 
         if (!ZodisPreferences.getFirstTimePref(this)) {

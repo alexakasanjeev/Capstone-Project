@@ -15,8 +15,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/text_insights_name"
         tools:text="Root"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimaryText"
         android:textSize="22sp"/>
 
     <TextView
@@ -27,7 +25,8 @@
         tools:text="Meaning"
         android:layout_marginLeft="@dimen/base_factor"
         android:textColor="@color/colorSecondaryText"
-        android:textSize="22sp"/>
+        android:textSize="22sp"
+        android:layout_marginStart="@dimen/base_factor" />
 
 
 </LinearLayout>

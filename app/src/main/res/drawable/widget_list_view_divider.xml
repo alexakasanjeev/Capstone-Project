@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:insetLeft="@dimen/double_factor"
+    android:insetRight="@dimen/double_factor" >
+
+    <shape>
+        <solid android:color="@color/colorPrimaryCloudDark" />
+        <corners android:radius="1dp" />
+    </shape>
+
+</inset>

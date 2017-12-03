@@ -18,16 +18,17 @@ import java.util.ArrayList;
 
 
 /**
- * Created by lenovo on 11/30/2017.
+ * Parse JSON data stored in assets folder and populate the database with this data.
+ * It logs error message if something goes wrong.
  */
 
-public class ZodisSyncTask {
-    private static final String TAG  = "ZODIS";
+class ZodisSyncTask {
+    private static final String TAG  = ZodisSyncTask.class.getSimpleName();
 
-    synchronized public static void syncZodis(Context context){
+    synchronized static void syncZodis(Context context){
 
         try {
-            String jsonResult = loadJSONFromAsset(context);
+            String jsonResult = loadJsonFromAsset(context);
             if (jsonResult!=null && jsonResult.length()>0) {
                 ArrayList<ContentProviderOperation> contentProviderOperations = ZodisJsonUtils.getZodisContentProviderOperationsFromJson(jsonResult);
 
@@ -54,10 +55,11 @@ public class ZodisSyncTask {
 
 
 
-    private static String loadJSONFromAsset(Context context) throws IOException {
-        String json = null;
+    private static String loadJsonFromAsset(Context context) throws IOException {
+        String json;
         try {
-            InputStream is = context.getAssets().open("document.json");
+            final String FILE_NAME = "document.json";
+            InputStream is = context.getAssets().open(FILE_NAME);
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);

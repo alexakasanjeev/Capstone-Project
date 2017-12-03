@@ -1,21 +1,28 @@
 package com.betatech.alex.zodis.ui.tabs.levels;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.betatech.alex.zodis.R;
+import com.betatech.alex.zodis.data.ZodisContract;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class LevelsFragment extends Fragment {
+public class LevelsFragment extends Fragment  implements LoaderManager.LoaderCallbacks<Cursor>{
 
+    private static final int LOADER_ID = 876;
     @BindView(R.id.recycler_levels) RecyclerView levelsList;
     private LevelsAdapter mAdapter;
 
@@ -50,8 +57,29 @@ public class LevelsFragment extends Fragment {
         levelsList.setLayoutManager(manager);
         levelsList.setAdapter(mAdapter);
 
+        getActivity().getSupportLoaderManager().initLoader(LOADER_ID,null,this);
+
         return view;
     }
 
 
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return new CursorLoader(getActivity(), ZodisContract.LevelEntry.CONTENT_URI,null,null,null,null);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        if (data!=null &&data.getCount()>0) {
+            mAdapter.swapCursor(data);
+        }else{
+            // TODO: 12/1/2017 Show error message, database problem
+            Toast.makeText(getActivity(), "Algo problemo con database", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        mAdapter.swapCursor(null);
+    }
 }

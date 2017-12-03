@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer-array name="level_image">
+        <item>@drawable/ic_asteroid_001</item>
+        <item>@drawable/ic_open_book_002</item>
+        <item>@drawable/ic_manuscript_003</item>
+        <item>@drawable/ic_torpedo_004</item>
+        <item>@drawable/ic_deliver_005</item>
+        <item>@drawable/ic_earth_globe_006</item>
+        <item>@drawable/ic_professor_007</item>
+        <item>@drawable/ic_brain_008</item>
+        <item>@drawable/ic_exam_009</item>
+        <item>@drawable/ic_icosahedron_010</item>
+    </integer-array>
+
+</resources>

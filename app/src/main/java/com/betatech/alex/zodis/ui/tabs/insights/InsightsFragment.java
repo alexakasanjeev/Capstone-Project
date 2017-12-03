@@ -55,7 +55,6 @@ public class InsightsFragment extends Fragment  implements LoaderManager.LoaderC
         insightsList.setAdapter(mAdapter);
 
         getActivity().getSupportLoaderManager().initLoader(LOADER_ID,null,this);
-        hideList();
 
         return view;
     }
@@ -63,7 +62,7 @@ public class InsightsFragment extends Fragment  implements LoaderManager.LoaderC
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        String[] projections=new String[]{ZodisContract.RootEntry.COLUMN_NAME, ZodisContract.RootEntry.COLUMN_DESCRIPTION};
+        String[] projections=new String[]{ZodisContract.RootEntry._ID,ZodisContract.RootEntry.COLUMN_NAME, ZodisContract.RootEntry.COLUMN_DESCRIPTION};
         String selections = ZodisContract.RootEntry.COLUMN_STATUS + " = ?";
         String[] selectionArgs=new String[]{"1"};
         return new CursorLoader(getActivity(), ZodisContract.RootEntry.CONTENT_URI,projections,selections,selectionArgs,null);

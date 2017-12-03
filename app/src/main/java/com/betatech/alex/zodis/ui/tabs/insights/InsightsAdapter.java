@@ -54,6 +54,8 @@ public class InsightsAdapter extends RecyclerView.Adapter<InsightsAdapter.Insigh
         int descriptionColumnIndex = mCursor.getColumnIndex(ZodisContract.RootEntry.COLUMN_DESCRIPTION);
 
         holder.nameTextView.setText(mCursor.getString(nameColumnIndex));
+        holder.nameTextView.setTypeface(null, Typeface.BOLD);
+        holder.nameTextView.setTextColor(mContext.getResources().getColor(R.color.colorPrimaryText));
         holder.descriptionTextView.setText(mCursor.getString(descriptionColumnIndex));
     }
 

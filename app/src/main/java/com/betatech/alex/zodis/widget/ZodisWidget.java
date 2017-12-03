@@ -22,8 +22,10 @@ public class ZodisWidget extends AppWidgetProvider {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.zodis_widget);
         Intent i =new Intent(context,ZodisRemoteViewsService.class);
         views.setRemoteAdapter(R.id.widgetListView,i);
+        views.setEmptyView(R.id.widgetListView,R.id.widgetEmptyView);
 
         views.setPendingIntentTemplate(R.id.widgetListView, getPendingIntent(context));
+        views.setOnClickPendingIntent(R.id.widgetEmptyView, getPendingIntent(context));
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
@@ -37,15 +39,6 @@ public class ZodisWidget extends AppWidgetProvider {
         }
     }
 
-    @Override
-    public void onEnabled(Context context) {
-        // Enter relevant functionality for when the first widget is created
-    }
-
-    @Override
-    public void onDisabled(Context context) {
-        // Enter relevant functionality for when the last widget is disabled
-    }
 
     private static PendingIntent getPendingIntent(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
@@ -53,6 +46,12 @@ public class ZodisWidget extends AppWidgetProvider {
         /*Dummy action to avoid PendingIntent get dropped*/
         intent.setAction(Long.toString(System.currentTimeMillis()));
         return PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+    }
+
+    public static void updateAllWidgets(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+        for (int appWidgetId : appWidgetIds) {
+            updateAppWidget(context, appWidgetManager, appWidgetId);
+        }
     }
 }
 

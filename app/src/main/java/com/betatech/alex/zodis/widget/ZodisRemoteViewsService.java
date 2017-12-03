@@ -32,16 +32,19 @@ class ZodisRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     
     @Override
     public void onDataSetChanged() {
-        // TODO: 11/30/2017 Update the where clause, show only practiced root word
+        // TODO: 11/30/2017 Create a logic to call ZodisWidgetService and increase XP
         String[] projections = new String[]{
                 ZodisContract.RootEntry._ID,
                 ZodisContract.RootEntry.COLUMN_NAME,
                 ZodisContract.RootEntry.COLUMN_DESCRIPTION};
-        String selection = null;
-        String[] selectionArgs = null;
+        String selections = ZodisContract.RootEntry.COLUMN_STATUS + " = ?";
+        String[] selectionArgs=new String[]{"1"};
 
-        mCursor = mContext.getContentResolver().query(ZodisContract.RootEntry.CONTENT_URI,projections,selection,selectionArgs,null);
+        mCursor = mContext.getContentResolver().query(ZodisContract.RootEntry.CONTENT_URI,projections,selections,selectionArgs,null);
+
+
     }
+
     
 
     @Override

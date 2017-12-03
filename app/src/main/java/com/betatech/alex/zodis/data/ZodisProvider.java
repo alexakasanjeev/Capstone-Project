@@ -9,6 +9,7 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.support.annotation.ColorLong;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -22,6 +23,8 @@ public class ZodisProvider extends ContentProvider {
 
     public static final int CODE_ROOT = 100;
     public static final int CODE_DERIVED = 200;
+    public static final int CODE_LEVEL = 300;
+    public static final int CODE_LEVEL_WITH_ID = 301;
 
     private static final UriMatcher sUriMatcher = buildUriMatcher();
     private ZodisDbHelper mOpenHelper;
@@ -33,6 +36,8 @@ public class ZodisProvider extends ContentProvider {
 
         matcher.addURI(authority,ZodisContract.RootEntry.TABLE_NAME, CODE_ROOT);
         matcher.addURI(authority,ZodisContract.DerivedEntry.TABLE_NAME, CODE_DERIVED);
+        matcher.addURI(authority,ZodisContract.LevelEntry.TABLE_NAME, CODE_LEVEL);
+        matcher.addURI(authority,ZodisContract.LevelEntry.TABLE_NAME+"/#", CODE_LEVEL_WITH_ID);
 
         return matcher;
     }
@@ -58,6 +63,9 @@ public class ZodisProvider extends ContentProvider {
             case CODE_DERIVED:
                 cursor = db.query(ZodisContract.DerivedEntry.TABLE_NAME,projection,selection,selectionArgs,null,null,sortOrder);
                 break;
+            case CODE_LEVEL:
+                cursor = db.query(ZodisContract.LevelEntry.TABLE_NAME,projection,selection,selectionArgs,null,null,sortOrder);
+                break;
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
@@ -80,7 +88,7 @@ public class ZodisProvider extends ContentProvider {
             }
             db.setTransactionSuccessful();
 
-            getContext().getContentResolver().notifyChange(ZodisContract.DerivedEntry.CONTENT_URI,null);
+            getContext().getContentResolver().notifyChange(ZodisContract.LevelEntry.CONTENT_URI,null);
 
             return results;
         } finally {
@@ -101,6 +109,9 @@ public class ZodisProvider extends ContentProvider {
             case CODE_DERIVED:
                 _id = db.insert(ZodisContract.DerivedEntry.TABLE_NAME,null,values);
                 return ZodisContract.DerivedEntry.buildDerivedUriWithId(_id);
+            case CODE_LEVEL:
+                _id = db.insert(ZodisContract.LevelEntry.TABLE_NAME,null,values);
+                return ZodisContract.LevelEntry.buildDerivedUriWithId(_id);
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
@@ -113,7 +124,26 @@ public class ZodisProvider extends ContentProvider {
 
     @Override
     public int update(@NonNull Uri uri, @Nullable ContentValues values, @Nullable String selection, @Nullable String[] selectionArgs) {
-        throw new RuntimeException("We are not implementing update in Zodis");
+        final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
+        int status=-1;
+        switch (sUriMatcher.match(uri)) {
+            case CODE_LEVEL:
+                status = db.update(ZodisContract.LevelEntry.TABLE_NAME,values,selection,selectionArgs);
+
+                String rootSelection = ZodisContract.RootEntry.COLUMN_LESSON +"=?";
+                ContentValues rootValues = new ContentValues();
+                rootValues.put(ZodisContract.RootEntry.COLUMN_STATUS,1);
+
+                db.update(ZodisContract.RootEntry.TABLE_NAME,rootValues,rootSelection,selectionArgs);
+
+                getContext().getContentResolver().notifyChange(ZodisContract.LevelEntry.CONTENT_URI,null);
+                getContext().getContentResolver().notifyChange(ZodisContract.RootEntry.CONTENT_URI,null);
+                break;
+            default:
+                throw new UnsupportedOperationException("Unknown uri: " + uri);
+        }
+
+        return status;
     }
 
     @Nullable

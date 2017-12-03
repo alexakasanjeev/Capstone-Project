@@ -1,7 +1,9 @@
 package com.betatech.alex.zodis.ui.tabs.levels;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -14,9 +16,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.betatech.alex.zodis.R;
+import com.betatech.alex.zodis.data.ZodisContract;
 import com.betatech.alex.zodis.ui.lesson.LessonActivity;
 import com.betatech.alex.zodis.ui.tabs.insights.InsightsAdapter;
 import com.betatech.alex.zodis.utilities.NotificationUtils;
+import com.betatech.alex.zodis.widget.ZodisWidgetService;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,10 +33,13 @@ public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.LevelsView
 
     private Cursor mCursor;
     private Context mContext;
+    private TypedArray imageArray;
 
     public LevelsAdapter(Cursor mCursor, Context mContext) {
         this.mCursor = mCursor;
         this.mContext = mContext;
+
+        imageArray = mContext.getResources().obtainTypedArray(R.array.level_image);
     }
 
     @Override
@@ -43,7 +50,23 @@ public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.LevelsView
 
     @Override
     public void onBindViewHolder(LevelsViewHolder holder, int position) {
-        if(position == 0){
+        if (mCursor==null) {
+            return;
+        }
+
+        mCursor.moveToPosition(position);
+
+        int nameColumnIndex = mCursor.getColumnIndex(ZodisContract.LevelEntry.COLUMN_LEVEL_NAME);
+        int lessonIdColumnIndex = mCursor.getColumnIndex(ZodisContract.LevelEntry.COLUMN_LESSON_ID);
+        int levelStatusColumnIndex = mCursor.getColumnIndex(ZodisContract.LevelEntry.COLUMN_LEVEL_STATUS);
+
+        String levelName = mCursor.getString(nameColumnIndex);
+        int lessonId = mCursor.getInt(lessonIdColumnIndex);
+        int status = mCursor.getInt(levelStatusColumnIndex);
+
+        holder.imageView.setImageResource(imageArray.getResourceId(position%10, 0));
+        holder.levelNameTextView.setText(mContext.getString(R.string.show_level_name,levelName));
+        if(status == 1){
             holder.opacityContainerLinearLayout.setAlpha(.87f);
             holder.cardView.setBackground(mContext.getDrawable(R.drawable.card_view_outline));
             holder.imageViewChecked.setVisibility(View.VISIBLE);
@@ -51,13 +74,7 @@ public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.LevelsView
             holder.opacityContainerLinearLayout.setAlpha(.38f);
         }
 
-        if (mCursor==null) {
-            return;
-        }
-
-        mCursor.moveToPosition(position);
-        // TODO: 12/1/2017 set text
-        // TODO: 12/2/2017 Set all these data with correct value
+        holder.cardView.setTag(lessonId);
     }
 
     public void swapCursor(Cursor cursor){
@@ -69,10 +86,9 @@ public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.LevelsView
         notifyDataSetChanged();
     }
 
-    // TODO: 12/1/2017 Remove default 10 empty rows
     @Override
     public int getItemCount() {
-        return mCursor!=null?mCursor.getCount():10;
+        return mCursor!=null?mCursor.getCount():0;
     }
 
     class LevelsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -91,9 +107,14 @@ public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.LevelsView
 
         @Override
         public void onClick(View v) {
-//            mContext.startActivity(new Intent(mContext, LessonActivity.class));
-            // TODO: 12/2/2017 Remove notidication code from here
-            NotificationUtils.notifyUserToPractise(mContext);
+            String lessonId = String.valueOf((int) v.getTag());
+
+            String selections = ZodisContract.LevelEntry.COLUMN_LESSON_ID + " =?";
+            String[] selectionArgs = new String[]{lessonId};
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(ZodisContract.LevelEntry.COLUMN_LEVEL_STATUS,1);
+            mContext.getContentResolver().update(ZodisContract.LevelEntry.CONTENT_URI,contentValues,selections,selectionArgs);
+            ZodisWidgetService.startActionUpdateAllWidgets(mContext);
         }
     }
 }

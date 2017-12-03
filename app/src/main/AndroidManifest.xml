@@ -41,10 +41,13 @@
             android:name=".sync.ZodisSyncIntentService"
             android:exported="false" />
 
-        <!-- Service to manually update widget -->
+        <!-- Service to help inflate ListView in widget -->
         <service
             android:name=".widget.ZodisRemoteViewsService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <!-- Service to be called, for manual updating of widgets-->
+        <service android:name=".widget.ZodisWidgetService"/>
 
         <receiver android:name=".widget.ZodisWidget">
             <intent-filter>

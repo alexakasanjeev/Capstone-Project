@@ -53,6 +53,26 @@ public class ZodisContract {
 
     }
 
+    public static final class LevelEntry implements BaseColumns {
+
+        public static final String TABLE_NAME = "levels";
+
+        public static final String COLUMN_LEVEL_NAME = "name";
+        public static final String COLUMN_LESSON_ID = "lesson_id";
+        public static final String COLUMN_LEVEL_STATUS = "status";
+
+        public static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon()
+                .appendPath(TABLE_NAME)
+                .build();
+
+        public static Uri buildDerivedUriWithId(Long _id) {
+            return CONTENT_URI.buildUpon()
+                    .appendPath(Long.toString(_id))
+                    .build();
+
+        }
+    }
+
     private interface CommonColumns extends BaseColumns{
         String COLUMN_NAME = "name";
         String COLUMN_DESCRIPTION = "description";

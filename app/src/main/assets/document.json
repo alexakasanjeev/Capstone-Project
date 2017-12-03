@@ -3,40 +3,177 @@
     "level": "A",
     "lessons": [
       {
+        "_id": 1,
         "root_words": [
+          {
+            "name": "aster",
+            "description": "star",
+            "derived_words": [
+              {
+                "name": "asteroid",
+                "description": "small rocky celestial bodies found especially between the orbits of Mars and Jupiter"
+              },
+              {
+                "name": "astronomy",
+                "description": "science that deals with the material universe beyond the earth's atmosphere"
+              },
+              {
+                "name": "astronaut",
+                "description": "person who travels beyond the earth's atmosphere"
+              }
+            ]
+          },
+          {
+            "name": "audi",
+            "description": "hear",
+            "derived_words": [
+              {
+                "name": "audible",
+                "description": "capable of being heard"
+              },
+              {
+                "name": "audience",
+                "description": "the group of spectators at a public event; listeners or viewers"
+              },
+              {
+                "name": "auditorium",
+                "description": "the space set apart for the audience in a theater"
+              }
+            ]
+          },
           {
             "name": "auto",
             "description": "self",
             "derived_words": [
               {
+                "name": "autopsy",
+                "description": "inspection and dissection of a body after death"
+              },
+              {
                 "name": "autobiography",
-                "description": "story of one's own life"
+                "description": "a history of a person's life written or told by that person"
               },
               {
-                "name": "automobile",
-                "description": "vechile that move itself"
-              },
-              {
-                "name": "autocracy",
-                "description": "rule by one self"
+                "name": "autograph",
+                "description": "a person's own signature"
               }
             ]
           },
           {
-            "name": "gyne",
-            "description": "woman",
+            "name": "bene",
+            "description": "good",
             "derived_words": [
               {
-                "name": "gynaecology",
-                "description": "doctor specialized in woman"
+                "name": "benign",
+                "description": "showing or expressive of gentleness or kindness"
               },
               {
-                "name": "misogyny",
-                "description": "hatered for woman"
+                "name": "benefactor",
+                "description": "a person who confers a benefit"
               },
               {
-                "name": "polygyny",
-                "description": "polygamy in which a man has more than one wife"
+                "name": "benevolent",
+                "description": "characterized by or expressing goodwill or kindly feelings"
+              }
+            ]
+          },
+          {
+            "name": "bio",
+            "description": "life",
+            "derived_words": [
+              {
+                "name": "biography",
+                "description": "a written account of another person's life"
+              },
+              {
+                "name": "biodegradable",
+                "description": "capable of decaying through the action of living organisms"
+              },
+              {
+                "name": "symbiosis",
+                "description": "the living together of two dissimilar organisms"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "level": "B",
+    "lessons": [
+      {
+        "_id": 2,
+        "root_words": [
+          {
+            "name": "chrono",
+            "description": "time",
+            "derived_words": [
+              {
+                "name": "chronic",
+                "description": "continuing a long time or recurring frequently"
+              },
+              {
+                "name": "synchronize",
+                "description": "to cause to indicate the same time"
+              },
+              {
+                "name": "chronology",
+                "description": "the sequential order in which past events occur"
+              }
+            ]
+          },
+          {
+            "name": "dict",
+            "description": "say",
+            "derived_words": [
+              {
+                "name": "dictate",
+                "description": "to say or read (something) aloud for another person to transcribe"
+              },
+              {
+                "name": "dictionary",
+                "description": "a resource containing a selection of the words of a language, giving information about their meanings"
+              },
+              {
+                "name": "addict",
+                "description": "a person who is addicted to an activity, habit, or substance"
+              }
+            ]
+          },
+          {
+            "name": "duc",
+            "description": "lead, make",
+            "derived_words": [
+              {
+                "name": "deduce",
+                "description": "to derive as a conclusion from something known or assumed"
+              },
+              {
+                "name": "produce",
+                "description": "to bring into existence"
+              },
+              {
+                "name": "conducive",
+                "description": "tending to produce"
+              }
+            ]
+          },
+          {
+            "name": "gen",
+            "description": "give birth",
+            "derived_words": [
+              {
+                "name": "gene",
+                "description": "the basic physical unit of heredity"
+              },
+              {
+                "name": "genesis",
+                "description": "an origin, creation, or beginning"
+              },
+              {
+                "name": "generation",
+                "description": "the entire body of individuals born and living at about the same time"
               }
             ]
           },
@@ -46,51 +183,815 @@
             "derived_words": [
               {
                 "name": "geography",
-                "description": " study of the Earth"
+                "description": "the science dealing with the areal differentiation of the earth's surface"
               },
               {
                 "name": "geology",
-                "description": "science that deals with nature and Earth history"
+                "description": "the science that deals with the dynamics and physical history of theearth"
               },
               {
                 "name": "geometry",
-                "description": "branch of mathematics that deals with points, lines, planes, and figures"
+                "description": "the branch of mathematics that deals with the deduction of the properties, measurement, and relationships of points, lines, angles,and figures in space "
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "level": "C",
+    "lessons": [
+      {
+        "_id": 3,
+        "root_words": [
+          {
+            "name": "graph",
+            "description": "write",
+            "derived_words": [
+              {
+                "name": "graphic",
+                "description": "giving a clear and effective picture"
+              },
+              {
+                "name": "epigraph",
+                "description": "an inscription, especially on a building, statue, or the like"
+              },
+              {
+                "name": "demographic",
+                "description": "of or relating to demography, the science of vital and social statistics"
               }
             ]
           },
+          {
+            "name": "jur",
+            "description": "law",
+            "derived_words": [
+              {
+                "name": "jury",
+                "description": "a group of persons sworn to render a verdict or true answer on aquestion"
+              },
+              {
+                "name": "adjure",
+                "description": "to charge, bind, or command earnestly and solemnly, often underoath or the threat of a penalty"
+              },
+              {
+                "name": "conjurer",
+                "description": "a person who conjures spirits or practices magic; magician"
+              }
+            ]
+          },
+          {
+            "name": "log",
+            "description": "thought",
+            "derived_words": [
+              {
+                "name": "logic",
+                "description": "the science that investigates the principles governing correct orreliable inference"
+              },
+              {
+                "name": "obloquy",
+                "description": "censure, blame, or abusive language aimed at a person or thing,especially by numerous persons"
+              },
+              {
+                "name": "analogy",
+                "description": "a similarity between like features of two things"
+              }
+            ]
+          },
+          {
+            "name": "manu",
+            "description": "hand",
+            "derived_words": [
+              {
+                "name": "manuscript",
+                "description": "he original text of an author's work, handwritten "
+              },
+              {
+                "name": "manicure",
+                "description": "cosmetic treatment of the hands and fingernails"
+              },
+              {
+                "name": "manure",
+                "description": "excrement, especially of animals, or other refuse used as fertilizer"
+              }
+            ]
+          },
+          {
+            "name": "mand",
+            "description": "order",
+            "derived_words": [
+              {
+                "name": "demand",
+                "description": "to ask for with proper authority"
+              },
+              {
+                "name": "remand",
+                "description": "to send back, remit, or consign again"
+              },
+              {
+                "name": "mandatory",
+                "description": "authoritatively ordered; obligatory; compulsory"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "level": "D",
+    "lessons": [
+      {
+        "_id": 4,
+        "root_words": [
+          {
+            "name": "mis",
+            "description": "send",
+            "derived_words": [
+              {
+                "name": "missile",
+                "description": "an object or weapon for throwing, hurling, or shooting, as a stone,bullet, or arrow"
+              },
+              {
+                "name": "transmission",
+                "description": "the act or process of sending something from one place to another"
+              },
+              {
+                "name": "emit",
+                "description": "to send forth "
+              }
+            ]
+          },
+          {
+            "name": "omni",
+            "description": "all",
+            "derived_words": [
+              {
+                "name": "omnivorous",
+                "description": "eating both animal and plant foods"
+              },
+              {
+                "name": "omnipotent",
+                "description": "almighty or infinite in power, as God"
+              },
+              {
+                "name": "omniscient",
+                "description": "having complete or unlimited knowledge, awareness, orunderstanding"
+              }
+            ]
+          },
+          {
+            "name": "path",
+            "description": "feel",
+            "derived_words": [
+              {
+                "name": "empathy",
+                "description": "the psychological identification with or vicarious experiencing of thefeelings, thoughts, or attitudes of another"
+              },
+              {
+                "name": "apathy",
+                "description": "absence or suppression of passion, emotion, or excitement"
+              },
+              {
+                "name": "antipathy",
+                "description": "a natural, basic, or habitual repugnance; aversion"
+              }
+            ]
+          },
+          {
+            "name": "phil",
+            "description": "love",
+            "derived_words": [
+              {
+                "name": "philosophy",
+                "description": "he rational investigation of the truths and principles of being,knowledge, or conduct"
+              },
+              {
+                "name": "bibliophile",
+                "description": "the rational investigation of the truths and principles of being,knowledge, or conduct"
+              },
+              {
+                "name": "philanthropy",
+                "description": "altruistic concern for human welfare and advancement"
+              }
+            ]
+          },
+          {
+            "name": "phon",
+            "description": "sound",
+            "derived_words": [
+              {
+                "name": "phonics",
+                "description": "a method of teaching reading and spelling based upon the phoneticinterpretation of ordinary spelling"
+              },
+              {
+                "name": "telephone",
+                "description": "an apparatus, system, or process for transmission of sound or speechto a distant point"
+              },
+              {
+                "name": "microphone",
+                "description": "an instrument capable of transforming sound waves into changes inelectric currents or voltage, used in recording or transmitting sound"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "level": "E",
+    "lessons": [
+      {
+        "_id": 5,
+        "root_words": [
           {
             "name": "photo",
             "description": "light",
             "derived_words": [
               {
                 "name": "photograph",
-                "description": "image generally taken with a camera"
+                "description": "draw using light"
               },
               {
                 "name": "photon",
-                "description": "particle that has energy and movement"
+                "description": "a quantum of electromagnetic radiation"
               },
               {
-                "name": "photocopy",
-                "description": "replica of printed material made using light"
+                "name": "photogenic",
+                "description": "forming an attractive subject for photography "
               }
             ]
           },
           {
+            "name": "port",
+            "description": "carry",
+            "derived_words": [
+              {
+                "name": "export",
+                "description": "to ship (commodities) to other countries or places for sale, exchange,etc"
+              },
+              {
+                "name": "rapport",
+                "description": "relation; connection, especially harmonious or sympathetic relation"
+              },
+              {
+                "name": "deport",
+                "description": "to expel (an alien) from a country; banish"
+              }
+            ]
+          },
+          {
+            "name": "quit",
+            "description": "quiet, rest",
+            "derived_words": [
+              {
+                "name": "acquit",
+                "description": "to relieve from a charge of fault or crime"
+              },
+              {
+                "name": "tranquil",
+                "description": "free from commotion or tumult"
+              },
+              {
+                "name": "quiescent",
+                "description": "being at rest; quiet"
+              }
+            ]
+          },
+          {
+            "name": "scrib",
+            "description": "write",
+            "derived_words": [
+              {
+                "name": "ascribe",
+                "description": "to credit or assign, as to a cause or source"
+              },
+              {
+                "name": "transcribe",
+                "description": "to make a written copy"
+              },
+              {
+                "name": "proscribe",
+                "description": "to denounce or condemn (a thing) as dangerous or harmful"
+              }
+            ]
+          },
+          {
+            "name": "sens",
+            "description": "feel",
+            "derived_words": [
+              {
+                "name": "resent",
+                "description": "to feel or show displeasure or indignation"
+              },
+              {
+                "name": "sensitive",
+                "description": "endowed with sensation"
+              },
+              {
+                "name": "sentient",
+                "description": "having the power of perception by the senses"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "level": "F",
+    "lessons": [
+      {
+        "_id": 6,
+        "root_words": [
+          {
             "name": "tele",
-            "description": "distance",
+            "description": "far off",
             "derived_words": [
               {
                 "name": "telecast",
-                "description": "brodcast a program over a distance"
-              },
-              {
-                "name": "telephone",
-                "description": "device to send speech or data over a distance"
+                "description": "to broadcast something at a distance"
               },
               {
                 "name": "telekinesis",
-                "description": "causing an object to move by means of psychic forces"
+                "description": "the purported ability to move or deform inanimate objects, as metalspoons, through mental processes"
+              },
+              {
+                "name": "telepathy",
+                "description": "communication between minds by some means other than sensoryperception"
+              }
+            ]
+          },
+          {
+            "name": "terr",
+            "description": "earth",
+            "derived_words": [
+              {
+                "name": "terrain",
+                "description": "a tract of land, especially as considered with reference to its naturalfeatures, military advantages, etc"
+              },
+              {
+                "name": "extraterrestrial",
+                "description": "outside, or originating outside, the limits of the earth"
+              },
+              {
+                "name": "terrace",
+                "description": "a raised level with a vertical or sloping front "
+              }
+            ]
+          },
+          {
+            "name": "vac",
+            "description": "empty",
+            "derived_words": [
+              {
+                "name": "evacuate",
+                "description": "to leave empty; vacate"
+              },
+              {
+                "name": "vacate",
+                "description": "to give up possession or occupancy of"
+              },
+              {
+                "name": "vacuous",
+                "description": "without contents; empty"
+              }
+            ]
+          },
+          {
+            "name": "vis",
+            "description": "see",
+            "derived_words": [
+              {
+                "name": "visible",
+                "description": "that can be seen; perceptible to the eye"
+              },
+              {
+                "name": "envisage",
+                "description": "to contemplate; visualize"
+              },
+              {
+                "name": "revision",
+                "description": "the act of going through what you have worked on"
+              }
+            ]
+          },
+          {
+            "name": "gyne",
+            "description": "woman",
+            "derived_words": [
+              {
+                "name": "gynecology",
+                "description": "the branch of medical science that deals with the health maintenanceand diseases of women"
+              },
+              {
+                "name": "misogyny",
+                "description": "hatred, dislike, or mistrust of women"
+              },
+              {
+                "name": "polygyny",
+                "description": "the practice or condition of having more than one wife at one time"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "level": "G",
+    "lessons": [
+      {
+        "_id": 7,
+        "root_words": [
+          {
+            "name": "anim",
+            "description": "life, spirit",
+            "derived_words": [
+              {
+                "name": "animal",
+                "description": "a living organism"
+              },
+              {
+                "name": "animate",
+                "description": "to make alive"
+              },
+              {
+                "name": "equanimity",
+                "description": "of balanced spirit"
+              }
+            ]
+          },
+          {
+            "name": "ambi",
+            "description": "both",
+            "derived_words": [
+              {
+                "name": "ambidextrous",
+                "description": "able to use both hands equally"
+              },
+              {
+                "name": "ambiguous",
+                "description": "having more than one meaning"
+              },
+              {
+                "name": "ambivalence",
+                "description": "conflicting or opposite feelings toward a person or thing"
+              }
+            ]
+          },
+          {
+            "name": "anthrop",
+            "description": "human",
+            "derived_words": [
+              {
+                "name": "anthropology ",
+                "description": "the study of mankind"
+              },
+              {
+                "name": "anthropomorphism",
+                "description": "giving human form to non-human things"
+              },
+              {
+                "name": "philanthropy",
+                "description": "the love to mankind"
+              }
+            ]
+          },
+          {
+            "name": "cardio",
+            "description": "heart",
+            "derived_words": [
+              {
+                "name": "cardiac",
+                "description": "relating to the heart"
+              },
+              {
+                "name": "cardiogenic",
+                "description": "resulting from heart disease"
+              },
+              {
+                "name": "cardiologist ",
+                "description": "a heart doctor"
+              }
+            ]
+          },
+          {
+            "name": "cata",
+            "description": "down, against completely",
+            "derived_words": [
+              {
+                "name": "cataclysm ",
+                "description": "a flood or other disaster"
+              },
+              {
+                "name": "catalog",
+                "description": "a complete listing"
+              },
+              {
+                "name": "catastrophe",
+                "description": "turning for the worst, a substantial disaster"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "level": "H",
+    "lessons": [
+      {
+        "_id": 8,
+        "root_words": [
+          {
+            "name": "caust",
+            "description": "to burn",
+            "derived_words": [
+              {
+                "name": "cauterize",
+                "description": "to burn with a hot instrument"
+              },
+              {
+                "name": "caustic ",
+                "description": "capable of burning or eating away"
+              },
+              {
+                "name": "holocaust ",
+                "description": "total devastation, especially by fire"
+              }
+            ]
+          },
+          {
+            "name": "cerebr",
+            "description": "brain",
+            "derived_words": [
+              {
+                "name": "cerebral ",
+                "description": "pertaining to the brain"
+              },
+              {
+                "name": "cerebrate ",
+                "description": "to use the brain"
+              },
+              {
+                "name": "cerebrospinal",
+                "description": "pertaining to the brain and the spinal cord"
+              }
+            ]
+          },
+          {
+            "name": "circum",
+            "description": "around, about",
+            "derived_words": [
+              {
+                "name": "circumnavigate ",
+                "description": "to sail around"
+              },
+              {
+                "name": "circumscribe ",
+                "description": " to draw around"
+              },
+              {
+                "name": "circumspect",
+                "description": "looking around"
+              }
+            ]
+          },
+          {
+            "name": "con",
+            "description": "with, jointly",
+            "derived_words": [
+              {
+                "name": "concur ",
+                "description": "to agree with someone"
+              },
+              {
+                "name": "contemporary ",
+                "description": "of the same time period as others"
+              },
+              {
+                "name": "convention ",
+                "description": "a gathering of people with a common interest"
+              }
+            ]
+          },
+          {
+            "name": "demo",
+            "description": "people",
+            "derived_words": [
+              {
+                "name": "democracy ",
+                "description": " government of the people"
+              },
+              {
+                "name": "epidemic",
+                "description": "spreading among people in a region"
+              },
+              {
+                "name": "demagogue",
+                "description": "a person, especially an orator or political leader"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "level": "I",
+    "lessons": [
+      {
+        "_id": 9,
+        "root_words": [
+          {
+            "name": "ger",
+            "description": "old age",
+            "derived_words": [
+              {
+                "name": "geriatrics ",
+                "description": "medicine pertaining to the elderly"
+              },
+              {
+                "name": "gerontocracy ",
+                "description": "the rule of the elders"
+              },
+              {
+                "name": "gerontology ",
+                "description": "the science of aging"
+              }
+            ]
+          },
+          {
+            "name": "gram",
+            "description": "letter, written",
+            "derived_words": [
+              {
+                "name": "diagram",
+                "description": "a simple drawing"
+              },
+              {
+                "name": "grammar ",
+                "description": "rules of how to write words in sentences"
+              },
+              {
+                "name": "telegram ",
+                "description": "a message sent by telegraph"
+              }
+            ]
+          },
+          {
+            "name": "hemo",
+            "description": "blood",
+            "derived_words": [
+              {
+                "name": "hemorrhage ",
+                "description": "clotting of the blood"
+              },
+              {
+                "name": "hemorrhoids ",
+                "description": "swelling of the blood vessels"
+              },
+              {
+                "name": "hemoglobin",
+                "description": " red blood particle"
+              }
+            ]
+          },
+          {
+            "name": "lingu",
+            "description": "language, tongue",
+            "derived_words": [
+              {
+                "name": "linguist",
+                "description": "one who studies languages"
+              },
+              {
+                "name": "multilingual",
+                "description": " able to communicate in multiple languages"
+              },
+              {
+                "name": "linguine",
+                "description": "long, flat \"tongue-shaped\" pasta"
+              }
+            ]
+          },
+          {
+            "name": "mal",
+            "description": "bad, ill, wrong",
+            "derived_words": [
+              {
+                "name": "malcontent ",
+                "description": "wrong content"
+              },
+              {
+                "name": "malicious ",
+                "description": "showing strong ill will"
+              },
+              {
+                "name": "malign",
+                "description": "to speak harmful untruths about"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "level": "J",
+    "lessons": [
+      {
+        "_id": 10,
+        "root_words": [
+          {
+            "name": "neuro",
+            "description": "nerve",
+            "derived_words": [
+              {
+                "name": "neuralgia ",
+                "description": "pain along a nerve"
+              },
+              {
+                "name": "neurologist ",
+                "description": "doctor specializing in the nerves"
+              },
+              {
+                "name": "neurotic ",
+                "description": "mental disorder that usually does not include an impaired perception of reality"
+              }
+            ]
+          },
+          {
+            "name": "ortho",
+            "description": "straight",
+            "derived_words": [
+              {
+                "name": "orthodontist ",
+                "description": "a dentist that straightens teeth"
+              },
+              {
+                "name": "orthopedic ",
+                "description": "a doctor concerned with the proper alignment of the bones"
+              },
+              {
+                "name": "orthography ",
+                "description": "the correct way of writing"
+              }
+            ]
+          },
+          {
+            "name": "peri",
+            "description": "around, enclosing",
+            "derived_words": [
+              {
+                "name": "periodontal",
+                "description": "pertaining to bone and tissue around a tooth"
+              },
+              {
+                "name": "peripheral",
+                "description": "lying outside of the center"
+              },
+              {
+                "name": "perimeter ",
+                "description": "the outer boundary of an area"
+              }
+            ]
+          },
+          {
+            "name": "poly",
+            "description": "many",
+            "derived_words": [
+              {
+                "name": "polychrome",
+                "description": "with many colors"
+              },
+              {
+                "name": "polyglot ",
+                "description": "a person fluent in many languages"
+              },
+              {
+                "name": "polygon ",
+                "description": " shape with 3 or more straight sides"
+              }
+            ]
+          },
+          {
+            "name": "sol",
+            "description": "alone",
+            "derived_words": [
+              {
+                "name": "desolate ",
+                "description": " lonely, dismal, gloomy"
+              },
+              {
+                "name": "solitary ",
+                "description": "done alone, by yourself"
+              },
+              {
+                "name": "solo",
+                "description": "a performance done by one person alone"
               }
             ]
           }

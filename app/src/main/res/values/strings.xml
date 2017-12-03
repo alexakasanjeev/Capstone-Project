@@ -33,4 +33,5 @@
     <string name="alarm_receiver_action" translatable="false">com.betatech.alex.zodis.DISPLAY_NOTIFICATION</string>
     <string name="notification_title">Hello, %1$s!</string>
     <string name="notification_description">Don\'t forget to practise daily &amp; increase your vocabulary.</string>
+    <string name="show_level_name">Level %1$s</string>
 </resources>

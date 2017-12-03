@@ -36,14 +36,22 @@ public class ZodisDbHelper extends SQLiteOpenHelper {
                 ZodisContract.DerivedEntry.COLUMN_DESCRIPTION       + " TEXT NOT NULL,"                  +
                 ZodisContract.DerivedEntry.COLUMN_ROOT_NAME           + " TEXT NOT NULL);";
 
+        final String SQL_CREATE_LEVEL_TABLE =  "CREATE TABLE " + ZodisContract.LevelEntry.TABLE_NAME + " (" +
+                ZodisContract.LevelEntry._ID                      + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                ZodisContract.LevelEntry.COLUMN_LEVEL_NAME              + " TEXT NOT NULL, "                 +
+                ZodisContract.LevelEntry.COLUMN_LESSON_ID       + " INTEGER NOT NULL,"                  +
+                ZodisContract.LevelEntry.COLUMN_LEVEL_STATUS           + " INTEGER DEFAULT 0);";
+
         db.execSQL(SQL_CREATE_ROOT_TABLE);
         db.execSQL(SQL_CREATE_DERIVED_TABLE);
+        db.execSQL(SQL_CREATE_LEVEL_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + ZodisContract.DerivedEntry.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + ZodisContract.RootEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + ZodisContract.LevelEntry.TABLE_NAME);
         onCreate(db);
     }
 }
