@@ -2,7 +2,6 @@ package com.betatech.alex.zodis.ui.tabs.levels;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.support.v7.widget.CardView;
@@ -10,16 +9,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.betatech.alex.zodis.R;
 import com.betatech.alex.zodis.data.ZodisContract;
-import com.betatech.alex.zodis.ui.lesson.LessonActivity;
-import com.betatech.alex.zodis.ui.tabs.insights.InsightsAdapter;
-import com.betatech.alex.zodis.utilities.NotificationUtils;
+import com.betatech.alex.zodis.data.ZodisPreferences;
 import com.betatech.alex.zodis.widget.ZodisWidgetService;
 
 import butterknife.BindView;
@@ -114,6 +110,7 @@ public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.LevelsView
             ContentValues contentValues = new ContentValues();
             contentValues.put(ZodisContract.LevelEntry.COLUMN_LEVEL_STATUS,1);
             mContext.getContentResolver().update(ZodisContract.LevelEntry.CONTENT_URI,contentValues,selections,selectionArgs);
+            ZodisPreferences.incrementLessonCompletedPref(mContext);
             ZodisWidgetService.startActionUpdateAllWidgets(mContext);
         }
     }

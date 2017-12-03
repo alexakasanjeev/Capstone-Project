@@ -30,7 +30,7 @@
         android:layout_marginBottom="@dimen/base_factor"
         android:text="Sign In"
         android:textColor="@color/colorPrimaryRaspberryDark"
-        android:background="@drawable/selector_button_outline"
+        android:background="@drawable/selector_button_outline_blue"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </LinearLayout>

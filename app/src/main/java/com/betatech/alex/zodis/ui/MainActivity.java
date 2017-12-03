@@ -18,6 +18,7 @@ import com.betatech.alex.zodis.data.ZodisContract;
 import com.betatech.alex.zodis.data.ZodisPreferences;
 import com.betatech.alex.zodis.sync.ScheduleNotification;
 import com.betatech.alex.zodis.sync.ZodisSyncIntentService;
+import com.betatech.alex.zodis.ui.login.LoginActivity;
 import com.betatech.alex.zodis.ui.tabs.insights.InsightsFragment;
 import com.betatech.alex.zodis.ui.tabs.levels.LevelsFragment;
 import com.betatech.alex.zodis.ui.tabs.user.UserFragment;
@@ -64,9 +65,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }
 
         if (!ZodisPreferences.getFirstTimePref(this)) {
-            ZodisPreferences.saveDatabaseStatusPref(this,true);
+            ZodisPreferences.saveFirstTimePref(this,true);
+            startActivity(new Intent(this, LoginActivity.class));
             ScheduleNotification.start(this,20);
         }
+
+
 
 
     }

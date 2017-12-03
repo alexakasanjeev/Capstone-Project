@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 import com.betatech.alex.zodis.R;
 import com.betatech.alex.zodis.data.ZodisPreferences;
 import com.betatech.alex.zodis.utilities.ImageUtils;
+import com.betatech.alex.zodis.utilities.LoginUtils;
 import com.betatech.alex.zodis.utilities.NetworkUtils;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -67,7 +69,7 @@ public class UserFragment extends Fragment implements GoogleApiClient.OnConnecti
             showUserProfile();
         }else{
             showGuestProfile();
-            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            /*GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                     .requestEmail()
                     .build();
             // Build a GoogleApiClient with the options specified by gso.
@@ -75,6 +77,8 @@ public class UserFragment extends Fragment implements GoogleApiClient.OnConnecti
                     .enableAutoManage(getActivity(), this)
                     .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                     .build();
+            FragmentActivity fragmentActivity;*/
+            mGoogleApiClient = LoginUtils.getGoogleApiClient(getActivity(),this);
         }
 
 
@@ -129,25 +133,14 @@ public class UserFragment extends Fragment implements GoogleApiClient.OnConnecti
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
             Log.d(TAG, "handleSignInResult: result successful");
-            GoogleSignInAccount acct = result.getSignInAccount();
-
-            String personName = getString(R.string.default_user_name);
-            Uri personPhoto = null;
-
-            if(acct != null){
-                personName = acct.getDisplayName();
-                personPhoto = acct.getPhotoUrl();
-            }
-
-            ZodisPreferences.saveLoggedInPref(getActivity(),true);
-            ZodisPreferences.saveUserNamePref(getActivity(),personName);
-            ZodisPreferences.savePhotoUrlPref(getActivity(),personPhoto.toString());
-
+            LoginUtils.initUserDetails(getActivity(),result);
             showUserProfile();
         }else{
             Log.d(TAG, "handleSignInResult: result failed");
         }
     }
+
+
 
     private void showGuestProfile(){
         hideProgressBar();
@@ -167,7 +160,6 @@ public class UserFragment extends Fragment implements GoogleApiClient.OnConnecti
 
         userNameTextView.setText(userName);
         xpEarnedTextView.setText(getString(R.string.xp_message,userXpScore));
-        // TODO: 12/2/2017 Save total number of level in preference
         lessonCompletedTextView.setText(getString(R.string.level_messages,userLessonCompleted,10));
 
         if (photoUrlPref!=null && photoUrlPref.length()>0) {

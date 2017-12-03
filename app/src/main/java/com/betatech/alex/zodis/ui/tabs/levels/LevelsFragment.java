@@ -74,7 +74,7 @@ public class LevelsFragment extends Fragment  implements LoaderManager.LoaderCal
             mAdapter.swapCursor(data);
         }else{
             // TODO: 12/1/2017 Show error message, database problem
-            Toast.makeText(getActivity(), "Algo problemo con database", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Level Database is empty", Toast.LENGTH_SHORT).show();
         }
     }
 

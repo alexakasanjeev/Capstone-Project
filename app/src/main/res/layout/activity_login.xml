@@ -6,16 +6,30 @@
     android:layout_height="match_parent"
     tools:context="com.betatech.alex.zodis.ui.login.LoginActivity">
 
-    <TextView
-        android:id="@+id/text_user_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/button_sign_in"
-        android:layout_width="fill_parent"
+    <include
+        android:id="@+id/include"
+        layout="@layout/partial_guest_user"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:layout_marginEnd="@dimen/double_factor"
+        android:layout_marginStart="@dimen/double_factor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_skip"
+        android:layout_width="@dimen/btn_sign_in_width"
+        android:layout_height="@dimen/btn_sign_in_height"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/selector_button_outline_green"
+        android:text="Skip"
+        android:textColor="@color/colorPrimaryRelishDark"
+        app:layout_constraintEnd_toEndOf="@+id/include"
+        app:layout_constraintStart_toStartOf="@+id/include"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
 
 </android.support.constraint.ConstraintLayout>

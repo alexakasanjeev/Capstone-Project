@@ -10,6 +10,7 @@
     <!-- Primary Palette are applied to skills, buttons, and text.-->
     <color name="colorPrimaryRelish">#8ee000</color>
     <color name="colorPrimaryRelishDark">#7ac70c</color>
+    <color name="colorPrimaryRelishDarkTransparent">#197ac70c</color>
     <color name="colorPrimaryMustard">#ffc715</color>
     <color name="colorPrimaryMustardDark">#faa918</color>
     <color name="colorPrimaryKetchup">#e53838</color>
