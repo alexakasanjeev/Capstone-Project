@@ -3,4 +3,41 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="dividerColor">#000</color>
+    <color name="listViewBackgroundColor">#eee</color>
+
+
+    <!-- Primary Palette are applied to skills, buttons, and text.-->
+    <color name="colorPrimaryRelish">#8ee000</color>
+    <color name="colorPrimaryRelishDark">#7ac70c</color>
+    <color name="colorPrimaryMustard">#ffc715</color>
+    <color name="colorPrimaryMustardDark">#faa918</color>
+    <color name="colorPrimaryKetchup">#e53838</color>
+    <color name="colorPrimaryKetchupDark">#d33131</color>
+    <color name="colorPrimaryRaspberry">#14d4f4</color>
+    <color name="colorPrimaryRaspberryDark">#1cb0f6</color>
+    <color name="colorPrimaryRaspberryDarkTransparent">#191cb0f6</color>
+    <color name="colorPrimaryJelly">#a560e8</color>
+    <color name="colorPrimaryJellyDark">#8549ba</color>
+    <color name="colorPrimaryLicorice">#6f6f6f</color>
+    <color name="colorPrimaryLicoriceDark">#4c4c4c</color>
+
+    <!--Secondary Palette are applied to backgrounds and grading ribbons. They are subdued to let the primary colors pop.-->
+    <color name="colorPrimaryCloud">#f0f0f0</color>
+    <color name="colorPrimaryCloudDark">#cfcfcf</color>
+    <color name="colorPrimaryMint">#bff199</color>
+    <color name="colorPrimaryCottonCandy">#f7c8c9</color>
+
+    <!--Bottom Navigation icon default color-->
+    <color name="colorDefaultBottomNavigation">#979797</color>
+
+    <!-- Sign In Custom Button-->
+    <color name="googleSignIn">#df360a</color>
+
+    <!--Material deign guideline for text color-->
+    <color name="colorPrimaryText">#de000000</color>
+    <color name="colorSecondaryText">#89000000</color>
+    <color name="colorHintText">#61000000</color>
+
+
 </resources>

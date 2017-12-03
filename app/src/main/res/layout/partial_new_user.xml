@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:id="@+id/linear_user_profile"
+    tools:showIn="@layout/fragment_user">
+
+    <!-- TODO : provide content description for ImageView-->
+
+    <android.support.v7.widget.CardView
+        android:layout_width="@dimen/user_pic_dim"
+        android:layout_height="@dimen/user_pic_dim"
+        tools:cardElevation="0dp"
+        app:cardCornerRadius="40dp"
+        android:innerRadius="0dp"
+        android:shape="ring"
+        android:layout_marginBottom="@dimen/double_factor"
+        android:thicknessRatio="1.9">
+        <ImageView
+            android:id="@+id/image_user_profile_pic"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/ic_boy" />
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/text_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/connect_msg"
+        android:textSize="26sp"
+        android:textColor="@color/colorPrimaryText"
+        android:layout_marginBottom="@dimen/double_factor" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/double_factor">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorSecondaryText"
+            android:text="@string/total_xp"/>
+
+        <TextView
+            android:id="@+id/text_user_xp_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/colorSecondaryText"
+            android:textStyle="bold"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorSecondaryText"
+            android:text="@string/level_completed"/>
+
+        <TextView
+            android:id="@+id/text_user_lesson_completed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorSecondaryText"
+            />
+
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

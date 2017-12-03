@@ -1,0 +1,101 @@
+[
+  {
+    "level": "A",
+    "lessons": [
+      {
+        "root_words": [
+          {
+            "name": "auto",
+            "description": "self",
+            "derived_words": [
+              {
+                "name": "autobiography",
+                "description": "story of one's own life"
+              },
+              {
+                "name": "automobile",
+                "description": "vechile that move itself"
+              },
+              {
+                "name": "autocracy",
+                "description": "rule by one self"
+              }
+            ]
+          },
+          {
+            "name": "gyne",
+            "description": "woman",
+            "derived_words": [
+              {
+                "name": "gynaecology",
+                "description": "doctor specialized in woman"
+              },
+              {
+                "name": "misogyny",
+                "description": "hatered for woman"
+              },
+              {
+                "name": "polygyny",
+                "description": "polygamy in which a man has more than one wife"
+              }
+            ]
+          },
+          {
+            "name": "geo",
+            "description": "earth",
+            "derived_words": [
+              {
+                "name": "geography",
+                "description": " study of the Earth"
+              },
+              {
+                "name": "geology",
+                "description": "science that deals with nature and Earth history"
+              },
+              {
+                "name": "geometry",
+                "description": "branch of mathematics that deals with points, lines, planes, and figures"
+              }
+            ]
+          },
+          {
+            "name": "photo",
+            "description": "light",
+            "derived_words": [
+              {
+                "name": "photograph",
+                "description": "image generally taken with a camera"
+              },
+              {
+                "name": "photon",
+                "description": "particle that has energy and movement"
+              },
+              {
+                "name": "photocopy",
+                "description": "replica of printed material made using light"
+              }
+            ]
+          },
+          {
+            "name": "tele",
+            "description": "distance",
+            "derived_words": [
+              {
+                "name": "telecast",
+                "description": "brodcast a program over a distance"
+              },
+              {
+                "name": "telephone",
+                "description": "device to send speech or data over a distance"
+              },
+              {
+                "name": "telekinesis",
+                "description": "causing an object to move by means of psychic forces"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

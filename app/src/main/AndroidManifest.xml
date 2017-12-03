@@ -2,20 +2,62 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.betatech.alex.zodis">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name=".Global"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        android:theme="@style/AppTheme.FullScreen">
+
+        <activity android:name=".ui.MainActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:noHistory="true" />
+
+
+        <activity android:name=".ui.lesson.LessonActivity" />
+
+        <!-- Our ContentProvider -->
+        <provider
+            android:name=".data.ZodisProvider"
+            android:authorities="@string/content_authority"
+            android:exported="true" />
+
+        <!-- Service to parse JSON from assets and populate table in SQLite -->
+        <service
+            android:name=".sync.ZodisSyncIntentService"
+            android:exported="false" />
+
+        <!-- Service to manually update widget -->
+        <service
+            android:name=".widget.ZodisRemoteViewsService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <receiver android:name=".widget.ZodisWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/zodis_widget_info" />
+        </receiver>
+
+        <receiver android:name=".sync.AlarmReceiver"/>
+
     </application>
 
 </manifest>

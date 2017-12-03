@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "857418759409",
+    "project_id": "firebase-zodis"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:857418759409:android:c143aa27c736d9ed",
+        "android_client_info": {
+          "package_name": "com.betatech.alex.zodis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "857418759409-14im8074uu7s0909554892t9spmr024h.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "857418759409-crecpleacqndvagftsconeihj6f9eqm2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.betatech.alex.zodis",
+            "certificate_hash": "68146e4de29093cec4b939331b457b236e616c05"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-lNgOqHw7ktJov0ziidLX0FdD2cj_tro"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

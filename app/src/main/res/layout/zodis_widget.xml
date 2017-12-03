@@ -1,0 +1,35 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/widget_margin">
+
+    <!--Display the recipe name-->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/black">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:textStyle="bold|italic"
+            android:text="@string/app_name"
+            />
+    </FrameLayout>
+
+    <ListView
+        android:id="@+id/widgetListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@color/dividerColor"
+        android:background="@color/listViewBackgroundColor"
+        android:dividerHeight="1dp"
+        tools:listitem="@layout/item_zodis_widget" />
+
+</LinearLayout>

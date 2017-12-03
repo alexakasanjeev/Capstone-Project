@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:id="@+id/linear_guest_profile"
+    tools:showIn="@layout/fragment_user">
+
+    <ImageView
+        android:layout_width="@dimen/user_pic_dim"
+        android:layout_height="@dimen/user_pic_dim"
+        app:srcCompat="@drawable/ic_boy"
+        android:layout_marginBottom="@dimen/double_factor" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/connect_msg"
+        android:textSize="16sp"
+        android:textColor="@color/colorPrimaryLicoriceDark"
+        android:layout_marginBottom="@dimen/double_factor" />
+
+    <Button
+        android:id="@+id/button_sign_in"
+        android:layout_width="@dimen/btn_sign_in_width"
+        android:layout_height="@dimen/btn_sign_in_height"
+        android:layout_marginBottom="@dimen/base_factor"
+        android:text="Sign In"
+        android:textColor="@color/colorPrimaryRaspberryDark"
+        android:background="@drawable/selector_button_outline"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</LinearLayout>
