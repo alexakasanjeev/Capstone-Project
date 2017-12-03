@@ -2,6 +2,7 @@ package com.betatech.alex.zodis.ui.tabs.levels;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.support.v7.widget.CardView;
@@ -16,6 +17,8 @@ import android.widget.TextView;
 import com.betatech.alex.zodis.R;
 import com.betatech.alex.zodis.data.ZodisContract;
 import com.betatech.alex.zodis.data.ZodisPreferences;
+import com.betatech.alex.zodis.ui.lesson.LessonActivity;
+import com.betatech.alex.zodis.ui.lesson.LessonSlidePageFragment;
 import com.betatech.alex.zodis.widget.ZodisWidgetService;
 
 import butterknife.BindView;
@@ -103,7 +106,8 @@ public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.LevelsView
 
         @Override
         public void onClick(View v) {
-            String lessonId = String.valueOf((int) v.getTag());
+            int lessonId = (int) v.getTag();
+            /*
 
             String selections = ZodisContract.LevelEntry.COLUMN_LESSON_ID + " =?";
             String[] selectionArgs = new String[]{lessonId};
@@ -111,7 +115,11 @@ public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.LevelsView
             contentValues.put(ZodisContract.LevelEntry.COLUMN_LEVEL_STATUS,1);
             mContext.getContentResolver().update(ZodisContract.LevelEntry.CONTENT_URI,contentValues,selections,selectionArgs);
             ZodisPreferences.incrementLessonCompletedPref(mContext);
-            ZodisWidgetService.startActionUpdateAllWidgets(mContext);
+            ZodisWidgetService.startActionUpdateAllWidgets(mContext);*/
+
+            Intent intent = new Intent(mContext, LessonActivity.class);
+            intent.putExtra(LessonActivity.KEY_LESSON_ID,lessonId);
+            mContext.startActivity(intent);
         }
     }
 }
