@@ -10,16 +10,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_margin="@dimen/double_factor">
 
         <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_cancel"
+            android:layout_marginRight="@dimen/double_factor"
+            android:background="@android:color/transparent"/>
 
         <FrameLayout
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_margin="@dimen/double_factor"
+            android:layout_marginRight="@dimen/base_factor"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical">
 
@@ -27,17 +32,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_gravity="center_vertical"
+                android:layout_marginRight="2px"
                 android:background="@drawable/button_disabled"/>
 
             <ProgressBar
-                android:id="@+id/ProgressBar"
+                android:id="@+id/progressBar"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:indeterminate="false"
                 android:maxHeight="8dp"
                 android:minHeight="8dp"
-                android:progress="50"
+                android:max="100"
+                android:progress="0"
                 android:progressDrawable="@drawable/progress_green"/>
         </FrameLayout>
 
@@ -46,14 +53,67 @@
 
     </LinearLayout>
 
-    <android.support.v4.view.ViewPager
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_quiz_question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Question 1"/>
+
+        <RadioGroup
+            android:id="@+id/radio_group_answers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RadioButton
+                android:id="@+id/radioButtonOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="RadioButton" />
+
+            <RadioButton
+                android:id="@+id/radioButtonTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="RadioButton" />
+
+            <RadioButton
+                android:id="@+id/radioButtonThree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="RadioButton" />
+
+            <RadioButton
+                android:id="@+id/radioButtonFour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="RadioButton" />
+
+            <RadioButton
+                android:id="@+id/radioButtonFive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="RadioButton" />
+        </RadioGroup>
+
+    </LinearLayout>
 
     <Button
+        android:id="@+id/button_check"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_green"/>
+        android:background="@drawable/selector_button_green"
+        android:stateListAnimator="@null"
+        android:layout_margin="@dimen/double_factor"/>
 
 </LinearLayout>

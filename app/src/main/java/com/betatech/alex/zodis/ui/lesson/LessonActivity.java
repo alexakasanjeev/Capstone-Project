@@ -60,7 +60,7 @@ public class LessonActivity extends AppCompatActivity implements LoaderManager.L
     /**
      * The pager adapter, which provides the pages to the view pager widget.
      */
-    private LessonScreenSlidePagerAdapter mPagerAdapter;
+    private LessonSlidePagerAdapter mPagerAdapter;
 
 
     @Override
@@ -95,7 +95,7 @@ public class LessonActivity extends AppCompatActivity implements LoaderManager.L
             getSupportLoaderManager().initLoader(ROOT_LOADER_ID,bundle,this);
         }
 
-        mPagerAdapter = new LessonScreenSlidePagerAdapter(getSupportFragmentManager());
+        mPagerAdapter = new LessonSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
 
         mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

@@ -13,11 +13,11 @@ import java.util.ArrayList;
  * PageAdapter for ViewPager, to unable user to scroll through root word
  */
 
-public class LessonScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
+public class LessonSlidePagerAdapter extends FragmentStatePagerAdapter {
 
     private ArrayList<RootWord> rootList;
 
-    public LessonScreenSlidePagerAdapter(FragmentManager fm) {
+    public LessonSlidePagerAdapter(FragmentManager fm) {
         super(fm);
     }
 

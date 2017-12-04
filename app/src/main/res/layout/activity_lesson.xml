@@ -57,6 +57,7 @@
             android:textColor="@android:color/white"
             android:text="Quiz"
             android:enabled="false"
+            android:stateListAnimator="@null"
             android:layout_height="@dimen/button_default_height"
             android:background="@drawable/selector_button_purple"
             android:layout_marginLeft="@dimen/double_factor"
