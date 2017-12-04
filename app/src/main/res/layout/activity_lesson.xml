@@ -1,16 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.betatech.alex.zodis.ui.lesson.LessonActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/app_bar_elevation"
+        android:theme="@style/ThemeOverlay.AppCompat.Light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/white"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    </android.support.design.widget.AppBarLayout>
+
 
     <!-- activity_screen_slide.xml -->
     <android.support.v4.view.ViewPager
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/double_factor"
+        android:paddingRight="@dimen/double_factor"
+        android:layout_marginTop="@dimen/base_factor"
+        android:paddingBottom="@dimen/base_factor">
+        <ImageButton
+            android:id="@+id/image_button_left"
+            android:layout_width="50dp"
+            android:layout_height="@dimen/button_default_height"
+            app:srcCompat="@drawable/ic_left"
+            android:background="@drawable/selector_button_blue"
+            />
+
+        <Button
+            android:id="@+id/button_start_quiz"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textColor="@android:color/white"
+            android:text="Quiz"
+            android:enabled="false"
+            android:layout_height="@dimen/button_default_height"
+            android:background="@drawable/selector_button_purple"
+            android:layout_marginLeft="@dimen/double_factor"
+            android:layout_marginRight="@dimen/double_factor"
+            />
+
+        <ImageButton
+        android:id="@+id/image_button_right"
+            android:layout_width="50dp"
+            android:layout_height="@dimen/button_default_height"
+            app:srcCompat="@drawable/ic_right"
+            android:background="@drawable/selector_button_blue"/>
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

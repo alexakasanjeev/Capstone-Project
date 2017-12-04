@@ -44,7 +44,7 @@ public class InsightsAdapter extends RecyclerView.Adapter<InsightsAdapter.Insigh
         }
 
         if (position==0) {
-            formatHeader(holder, mContext.getString(R.string.insights_root_header), mContext.getString(R.string.insights_description_header));
+            formatHeader(holder, mContext.getString(R.string.root_header), mContext.getString(R.string.description_header));
             return;
         }
 

@@ -73,7 +73,8 @@ public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.LevelsView
             holder.opacityContainerLinearLayout.setAlpha(.38f);
         }
 
-        holder.cardView.setTag(lessonId);
+        holder.cardView.setTag(R.string.KEY_LESSON_ID,lessonId);
+        holder.cardView.setTag(R.string.KEY_LESSON_NAME,levelName);
     }
 
     public void swapCursor(Cursor cursor){
@@ -106,7 +107,8 @@ public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.LevelsView
 
         @Override
         public void onClick(View v) {
-            int lessonId = (int) v.getTag();
+            int lessonId = (int) v.getTag(R.string.KEY_LESSON_ID);
+            String levelName = (String) v.getTag(R.string.KEY_LESSON_NAME);
             /*
 
             String selections = ZodisContract.LevelEntry.COLUMN_LESSON_ID + " =?";
@@ -119,6 +121,7 @@ public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.LevelsView
 
             Intent intent = new Intent(mContext, LessonActivity.class);
             intent.putExtra(LessonActivity.KEY_LESSON_ID,lessonId);
+            intent.putExtra(LessonActivity.KEY_LEVEL_NAME,levelName);
             mContext.startActivity(intent);
         }
     }

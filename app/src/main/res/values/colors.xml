@@ -10,6 +10,7 @@
     <!-- Primary Palette are applied to skills, buttons, and text.-->
     <color name="colorPrimaryRelish">#8ee000</color>
     <color name="colorPrimaryRelishDark">#7ac70c</color>
+    <color name="colorPrimaryRelishDarker">#467407</color>
     <color name="colorPrimaryRelishDarkTransparent">#197ac70c</color>
     <color name="colorPrimaryMustard">#ffc715</color>
     <color name="colorPrimaryMustardDark">#faa918</color>
@@ -17,9 +18,11 @@
     <color name="colorPrimaryKetchupDark">#d33131</color>
     <color name="colorPrimaryRaspberry">#14d4f4</color>
     <color name="colorPrimaryRaspberryDark">#1cb0f6</color>
+    <color name="colorPrimaryRaspberryDarker">#0888c4</color>
     <color name="colorPrimaryRaspberryDarkTransparent">#191cb0f6</color>
     <color name="colorPrimaryJelly">#a560e8</color>
     <color name="colorPrimaryJellyDark">#8549ba</color>
+    <color name="colorPrimaryJellyDarker">#5f3285</color>
     <color name="colorPrimaryLicorice">#6f6f6f</color>
     <color name="colorPrimaryLicoriceDark">#4c4c4c</color>
 
@@ -34,6 +37,7 @@
 
     <!-- Sign In Custom Button-->
     <color name="googleSignIn">#df360a</color>
+    <color name="colorButtonDisabled">#c8c8c8</color>
 
     <!--Material deign guideline for text color-->
     <color name="colorPrimaryText">#de000000</color>
