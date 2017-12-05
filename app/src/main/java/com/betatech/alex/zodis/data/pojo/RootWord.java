@@ -23,7 +23,7 @@ public class RootWord implements Parcelable {
         this.derivedWordList = derivedWordList;
     }
 
-    protected RootWord(Parcel in) {
+    private RootWord(Parcel in) {
         readFromParcel(in);
     }
 
@@ -59,35 +59,19 @@ public class RootWord implements Parcelable {
         dest.writeList(derivedWordList);
     }
 
-    public long get_id() {
-        return _id;
-    }
-
-    public void set_id(long _id) {
-        this._id = _id;
-    }
 
     public String getRootWordName() {
         return rootWordName;
     }
 
-    public void setRootWordName(String rootWordName) {
-        this.rootWordName = rootWordName;
-    }
 
     public String getRootWordDescription() {
         return rootWordDescription;
     }
 
-    public void setRootWordDescription(String rootWordDescription) {
-        this.rootWordDescription = rootWordDescription;
-    }
 
     public ArrayList<DerivedWord> getDerivedWordList() {
         return derivedWordList;
     }
 
-    public void setDerivedWordList(ArrayList<DerivedWord> derivedWordList) {
-        this.derivedWordList = derivedWordList;
-    }
 }

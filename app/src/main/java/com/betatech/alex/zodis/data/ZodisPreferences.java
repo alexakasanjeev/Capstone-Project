@@ -12,12 +12,12 @@ import com.betatech.alex.zodis.R;
 
 public class ZodisPreferences {
 
-    public static final String PREF_DB_STATUS = "db";
-    public static final String PREF_LOGGED_IN = "loggedIn";
-    public static final String PREF_USER_NAME = "user_name";
-    public static final String PREF_USER_PHOTO_URL = "user_photo_url";
-    public static final String PREF_XP_EARN = "xp";
-    public static final String PREF_FIRST_TIME = "first_time_app_open";
+    private static final String PREF_DB_STATUS = "db";
+    private static final String PREF_LOGGED_IN = "loggedIn";
+    private static final String PREF_USER_NAME = "user_name";
+    private static final String PREF_USER_PHOTO_URL = "user_photo_url";
+    private static final String PREF_XP_EARN = "xp";
+    private static final String PREF_FIRST_TIME = "first_time_app_open";
 
 
     /* Get first time status : true or false*/

@@ -22,11 +22,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class InsightsFragment extends Fragment  implements LoaderManager.LoaderCallbacks<Cursor>{
+public class InsightsFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final int LOADER_ID = 786;
-    @BindView(R.id.recycler_insights) RecyclerView insightsList;
-    @BindView(R.id.text_insights_message) TextView insightsMessageTextView;
+    @BindView(R.id.recycler_insights)
+    RecyclerView insightsList;
+    @BindView(R.id.text_insights_message)
+    TextView insightsMessageTextView;
     private InsightsAdapter mAdapter;
 
 
@@ -35,8 +37,7 @@ public class InsightsFragment extends Fragment  implements LoaderManager.LoaderC
     }
 
     public static InsightsFragment newInstance() {
-        InsightsFragment fragment = new InsightsFragment();
-        return fragment;
+        return new InsightsFragment();
     }
 
     // this method is only called once for this fragment
@@ -51,10 +52,10 @@ public class InsightsFragment extends Fragment  implements LoaderManager.LoaderC
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_insights, container, false);
-        ButterKnife.bind(this,view);
+        View view = inflater.inflate(R.layout.fragment_insights, container, false);
+        ButterKnife.bind(this, view);
 
-        mAdapter = new InsightsAdapter(null,getActivity());
+        mAdapter = new InsightsAdapter(null, getActivity());
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(insightsList.getContext(),
                 manager.getOrientation());
@@ -62,7 +63,7 @@ public class InsightsFragment extends Fragment  implements LoaderManager.LoaderC
         insightsList.setLayoutManager(manager);
         insightsList.setAdapter(mAdapter);
 
-        getActivity().getSupportLoaderManager().initLoader(LOADER_ID,null,this);
+        getActivity().getSupportLoaderManager().initLoader(LOADER_ID, null, this);
 
         return view;
     }
@@ -70,32 +71,31 @@ public class InsightsFragment extends Fragment  implements LoaderManager.LoaderC
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        String[] projections=new String[]{ZodisContract.RootEntry._ID,ZodisContract.RootEntry.COLUMN_NAME, ZodisContract.RootEntry.COLUMN_DESCRIPTION};
+        String[] projections = new String[]{ZodisContract.RootEntry._ID, ZodisContract.RootEntry.COLUMN_NAME, ZodisContract.RootEntry.COLUMN_DESCRIPTION};
         String selections = ZodisContract.RootEntry.COLUMN_STATUS + " = ?";
-        String[] selectionArgs=new String[]{"1"};
-        return new CursorLoader(getActivity(), ZodisContract.RootEntry.CONTENT_URI,projections,selections,selectionArgs,null);
+        String[] selectionArgs = new String[]{"1"};
+        return new CursorLoader(getActivity(), ZodisContract.RootEntry.CONTENT_URI, projections, selections, selectionArgs, null);
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        if (data!=null &&data.getCount()>0) {
+        if (data != null && data.getCount() > 0) {
             showList();
             mAdapter.swapCursor(data);
-        }else if(data!=null && data.getCount() ==0){
+        } else if (data != null && data.getCount() == 0) {
             hideList();
-        }else{
-            // TODO: 12/1/2017 Show error message, database problem
-            Toast.makeText(getActivity(), "Algo problemo con database", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getActivity(), getString(R.string.database_error), Toast.LENGTH_SHORT).show();
         }
     }
 
 
-    private void showList(){
+    private void showList() {
         insightsMessageTextView.setVisibility(View.GONE);
         insightsList.setVisibility(View.VISIBLE);
     }
 
-    private void hideList(){
+    private void hideList() {
         insightsMessageTextView.setVisibility(View.VISIBLE);
         insightsList.setVisibility(View.GONE);
     }

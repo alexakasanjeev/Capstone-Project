@@ -61,7 +61,7 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/zodis_widget_info" />
         </receiver>
-        <receiver android:name=".sync.AlarmReceiver" />
+
 
         <activity android:name=".ui.quiz.QuizActivity" />
         <activity android:name=".ui.quiz.ShareActivity"></activity>

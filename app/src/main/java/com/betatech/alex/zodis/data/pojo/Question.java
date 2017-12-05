@@ -25,7 +25,7 @@ public class Question implements Parcelable{
         isRootWord = in.readByte() != 0;
     }
 
-    protected Question(Parcel in) {
+    private Question(Parcel in) {
         readFromParcel(in);
     }
 
@@ -45,24 +45,14 @@ public class Question implements Parcelable{
         return question;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
-    }
 
     public String getAnswer() {
         return answer;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
 
     public boolean isRootWord() {
         return isRootWord;
-    }
-
-    public void setRootWord(boolean rootWord) {
-        isRootWord = rootWord;
     }
 
     @Override

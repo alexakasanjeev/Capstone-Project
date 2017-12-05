@@ -19,36 +19,36 @@ import butterknife.ButterKnife;
  * Created by lenovo on 12/1/2017.
  */
 
-public class InsightsAdapter extends RecyclerView.Adapter<InsightsAdapter.InsightsViewHolder>{
+public class InsightsAdapter extends RecyclerView.Adapter<InsightsAdapter.InsightsViewHolder> {
 
     /* To show table header*/
     private static final int EXTRA_ROWS = 1;
     private Cursor mCursor;
     private Context mContext;
 
-    public InsightsAdapter(Cursor mCursor,Context mContext) {
+    public InsightsAdapter(Cursor mCursor, Context mContext) {
         this.mCursor = mCursor;
         this.mContext = mContext;
     }
 
     @Override
     public InsightsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View singleItemLayout = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_insights_list,parent,false);
+        View singleItemLayout = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_insights_list, parent, false);
         return new InsightsViewHolder(singleItemLayout);
     }
 
     @Override
     public void onBindViewHolder(InsightsViewHolder holder, int position) {
-        if (mCursor==null) {
+        if (mCursor == null) {
             return;
         }
 
-        if (position==0) {
+        if (position == 0) {
             formatHeader(holder, mContext.getString(R.string.root_header), mContext.getString(R.string.description_header));
             return;
         }
 
-        mCursor.moveToPosition(position-1);
+        mCursor.moveToPosition(position - 1);
 
         int nameColumnIndex = mCursor.getColumnIndex(ZodisContract.RootEntry.COLUMN_NAME);
         int descriptionColumnIndex = mCursor.getColumnIndex(ZodisContract.RootEntry.COLUMN_DESCRIPTION);
@@ -69,25 +69,27 @@ public class InsightsAdapter extends RecyclerView.Adapter<InsightsAdapter.Insigh
 
     @Override
     public int getItemCount() {
-        return mCursor!=null?mCursor.getCount()+EXTRA_ROWS:0;
+        return mCursor != null ? mCursor.getCount() + EXTRA_ROWS : 0;
     }
 
-    public void swapCursor(Cursor cursor){
-        if (mCursor!=null) {
+    public void swapCursor(Cursor cursor) {
+        if (mCursor != null) {
             mCursor.close();
         }
         mCursor = cursor;
         notifyDataSetChanged();
     }
 
-    class InsightsViewHolder extends RecyclerView.ViewHolder{
+    class InsightsViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.text_insights_name) TextView nameTextView;
-        @BindView(R.id.text_insights_description) TextView descriptionTextView;
+        @BindView(R.id.text_insights_name)
+        TextView nameTextView;
+        @BindView(R.id.text_insights_description)
+        TextView descriptionTextView;
 
         public InsightsViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

@@ -28,7 +28,6 @@ import butterknife.OnClick;
 
 public class LessonActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
 
-    // TODO: 12/4/2017 Save state for orientation chnage
 
     public static final String TAG = LessonActivity.class.getSimpleName();
     private static final String STATE_QUIZ_BUTTON_STATE = "quiz_button_state";
@@ -38,7 +37,6 @@ public class LessonActivity extends AppCompatActivity implements LoaderManager.L
      *  Lesson ID KEY
      */
     public static final String KEY_LESSON_ID = "lesson_id";
-    public static final String KEY_ROOT_WORD_ID = "root_word";
     public static final String KEY_LEVEL_NAME = "level_name";
 
     private static final int ROOT_LOADER_ID = 123;
@@ -93,9 +91,7 @@ public class LessonActivity extends AppCompatActivity implements LoaderManager.L
                 quizButton.setEnabled(true);
             }
         }
-
-
-        Toast.makeText(this, levelName, Toast.LENGTH_SHORT).show();
+        
         mToolbar.setTitle(getString(R.string.show_level_name,levelName));
 
         if (lessonId==-1) {
@@ -181,8 +177,7 @@ public class LessonActivity extends AppCompatActivity implements LoaderManager.L
                     rootWordCursor = data;
                     getSupportLoaderManager().initLoader(DERIVED_LOADER_ID,null,this);
                 }else{
-                    // TODO: 12/4/2017 make it correct
-                    Log.d(TAG, "onLoadFinished: Some Error");
+                    showErrorToast();
                 }
                 break;
             case DERIVED_LOADER_ID:
@@ -193,14 +188,17 @@ public class LessonActivity extends AppCompatActivity implements LoaderManager.L
                     }
                     mPagerAdapter.swapList(list);
                 }else{
-                    // TODO: 12/4/2017 make it correct
-                    Log.d(TAG, "onLoadFinished: Some Error");
+                    showErrorToast();
                 }
                 break;
         }
 
 
 
+    }
+
+    private void showErrorToast() {
+        Toast.makeText(this, getString(R.string.database_error), Toast.LENGTH_SHORT).show();
     }
 
     @Override

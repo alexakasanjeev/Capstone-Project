@@ -1,17 +1,10 @@
 package com.betatech.alex.zodis.ui.tabs.user;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,37 +17,38 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.betatech.alex.zodis.R;
-import com.betatech.alex.zodis.data.ZodisContract;
 import com.betatech.alex.zodis.data.ZodisPreferences;
 import com.betatech.alex.zodis.utilities.ImageUtils;
 import com.betatech.alex.zodis.utilities.LoginUtils;
 import com.betatech.alex.zodis.utilities.NetworkUtils;
 import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class UserFragment extends Fragment implements GoogleApiClient.OnConnectionFailedListener{
+public class UserFragment extends Fragment implements GoogleApiClient.OnConnectionFailedListener {
 
-    private static final int LOADER_ID = 876;
-    @BindView(R.id.button_sign_in) Button signInButton;
-    @BindView(R.id.linear_guest_profile) LinearLayout guestProfileLinearLayout;
-    @BindView(R.id.linear_user_profile) LinearLayout userProfileLinearLayout;
-    @BindView(R.id.image_user_profile_pic) ImageView userProfileImageView;
-    @BindView(R.id.text_user_name) TextView userNameTextView;
-    @BindView(R.id.text_user_xp_score) TextView xpEarnedTextView;
-    @BindView(R.id.progressBar) ProgressBar progressBar;
+    @BindView(R.id.button_sign_in)
+    Button signInButton;
+    @BindView(R.id.linear_guest_profile)
+    LinearLayout guestProfileLinearLayout;
+    @BindView(R.id.linear_user_profile)
+    LinearLayout userProfileLinearLayout;
+    @BindView(R.id.image_user_profile_pic)
+    ImageView userProfileImageView;
+    @BindView(R.id.text_user_name)
+    TextView userNameTextView;
+    @BindView(R.id.text_user_xp_score)
+    TextView xpEarnedTextView;
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
 
     private GoogleApiClient mGoogleApiClient = null;
-    private static final int RC_SIGN_IN = 007;
+    private static final int RC_SIGN_IN = 101;
     private static final String TAG = "zodis";
 
     public UserFragment() {
@@ -62,8 +56,7 @@ public class UserFragment extends Fragment implements GoogleApiClient.OnConnecti
     }
 
     public static UserFragment newInstance() {
-        UserFragment fragment = new UserFragment();
-        return fragment;
+        return new UserFragment();
     }
 
     @Override
@@ -77,12 +70,12 @@ public class UserFragment extends Fragment implements GoogleApiClient.OnConnecti
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_user, container, false);
-        ButterKnife.bind(this,view);
+        View view = inflater.inflate(R.layout.fragment_user, container, false);
+        ButterKnife.bind(this, view);
 
         if (ZodisPreferences.getLoggedInPref(getActivity())) {
             showUserProfile();
-        }else{
+        } else {
             showGuestProfile();
             /*GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                     .requestEmail()
@@ -93,14 +86,15 @@ public class UserFragment extends Fragment implements GoogleApiClient.OnConnecti
                     .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                     .build();
             FragmentActivity fragmentActivity;*/
-            if (mGoogleApiClient==null) {
-                mGoogleApiClient = LoginUtils.getGoogleApiClient(getActivity(),this);
+            if (mGoogleApiClient == null) {
+                mGoogleApiClient = LoginUtils.getGoogleApiClient(getActivity(), this);
             }
         }
 
 
         return view;
     }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -114,7 +108,7 @@ public class UserFragment extends Fragment implements GoogleApiClient.OnConnecti
     @Override
     public void onPause() {
         super.onPause();
-        if(mGoogleApiClient!=null){
+        if (mGoogleApiClient != null) {
             mGoogleApiClient.stopAutoManage(getActivity());
             mGoogleApiClient.disconnect();
         }
@@ -125,19 +119,19 @@ public class UserFragment extends Fragment implements GoogleApiClient.OnConnecti
     public void onStop() {
         super.onStop();
         // stop GoogleApiClient
-        if (mGoogleApiClient!=null && mGoogleApiClient.isConnected()) {
+        if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
             mGoogleApiClient.stopAutoManage(getActivity());
             mGoogleApiClient.disconnect();
         }
     }
 
     @OnClick(R.id.button_sign_in)
-    public void signIn(){
+    public void signIn() {
         if (NetworkUtils.isOnline(getActivity())) {
             Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
             startActivityForResult(signInIntent, RC_SIGN_IN);
             showProgressBar();
-        }else{
+        } else {
             Toast.makeText(getActivity(), R.string.no_internet_message, Toast.LENGTH_SHORT).show();
         }
     }
@@ -160,23 +154,22 @@ public class UserFragment extends Fragment implements GoogleApiClient.OnConnecti
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
             Log.d(TAG, "handleSignInResult: result successful");
-            LoginUtils.initUserDetails(getActivity(),result);
+            LoginUtils.initUserDetails(getActivity(), result);
             showUserProfile();
-        }else{
+        } else {
             showGuestProfile();
             Log.d(TAG, "handleSignInResult: result failed");
         }
     }
 
 
-
-    private void showGuestProfile(){
+    private void showGuestProfile() {
         hideProgressBar();
         guestProfileLinearLayout.setVisibility(View.VISIBLE);
         userProfileLinearLayout.setVisibility(View.GONE);
     }
 
-    private void showUserProfile(){
+    private void showUserProfile() {
         hideProgressBar();
         guestProfileLinearLayout.setVisibility(View.GONE);
         userProfileLinearLayout.setVisibility(View.VISIBLE);
@@ -186,30 +179,29 @@ public class UserFragment extends Fragment implements GoogleApiClient.OnConnecti
         int userXpScore = ZodisPreferences.getXpEarnPref(getActivity());
 
         userNameTextView.setText(userName);
-        xpEarnedTextView.setText(getString(R.string.xp_message,userXpScore));
+        xpEarnedTextView.setText(getString(R.string.xp_message, userXpScore));
 
-        if (photoUrlPref!=null && photoUrlPref.length()>0) {
-            ImageUtils.loadImage(getActivity(),userProfileImageView, photoUrlPref);
-        }else{
+        if (photoUrlPref != null && photoUrlPref.length() > 0) {
+            ImageUtils.loadImage(getActivity(), userProfileImageView, photoUrlPref);
+        } else {
             userProfileImageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_boy));
         }
 
     }
 
-    private void showProgressBar(){
+    private void showProgressBar() {
         guestProfileLinearLayout.setVisibility(View.GONE);
         userProfileLinearLayout.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
     }
 
-    private void hideProgressBar(){
+    private void hideProgressBar() {
         progressBar.setVisibility(View.GONE);
     }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Log.d("TAG","Connection Failed");
-        Toast.makeText(getActivity(), "Unable to connect", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), getString(R.string.google_connection_failed), Toast.LENGTH_SHORT).show();
     }
 
 

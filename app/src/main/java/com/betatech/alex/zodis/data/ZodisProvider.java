@@ -101,7 +101,7 @@ public class ZodisProvider extends ContentProvider {
     @Override
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
         final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
-        long _id = -1;
+        long _id ;
         switch (sUriMatcher.match(uri)) {
             case CODE_ROOT:
                 _id = db.insert(ZodisContract.RootEntry.TABLE_NAME,null,values);
@@ -125,7 +125,7 @@ public class ZodisProvider extends ContentProvider {
     @Override
     public int update(@NonNull Uri uri, @Nullable ContentValues values, @Nullable String selection, @Nullable String[] selectionArgs) {
         final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
-        int status=-1;
+        int status;
         switch (sUriMatcher.match(uri)) {
             case CODE_LEVEL:
                 status = db.update(ZodisContract.LevelEntry.TABLE_NAME,values,selection,selectionArgs);

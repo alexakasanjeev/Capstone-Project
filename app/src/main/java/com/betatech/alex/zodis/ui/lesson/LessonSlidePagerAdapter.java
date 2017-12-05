@@ -1,6 +1,5 @@
 package com.betatech.alex.zodis.ui.lesson;
 
-import android.database.Cursor;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -28,11 +27,11 @@ public class LessonSlidePagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return rootList!=null?rootList.size():0;
+        return rootList != null ? rootList.size() : 0;
     }
 
-    public void swapList(ArrayList<RootWord> list){
-        if (rootList!=null) {
+    public void swapList(ArrayList<RootWord> list) {
+        if (rootList != null) {
             rootList = null;
         }
 

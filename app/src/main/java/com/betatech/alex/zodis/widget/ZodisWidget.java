@@ -20,9 +20,9 @@ public class ZodisWidget extends AppWidgetProvider {
 
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.zodis_widget);
-        Intent i =new Intent(context,ZodisRemoteViewsService.class);
-        views.setRemoteAdapter(R.id.widgetListView,i);
-        views.setEmptyView(R.id.widgetListView,R.id.widgetEmptyView);
+        Intent i = new Intent(context, ZodisRemoteViewsService.class);
+        views.setRemoteAdapter(R.id.widgetListView, i);
+        views.setEmptyView(R.id.widgetListView, R.id.widgetEmptyView);
 
         views.setPendingIntentTemplate(R.id.widgetListView, getPendingIntent(context));
         views.setOnClickPendingIntent(R.id.widgetEmptyView, getPendingIntent(context));

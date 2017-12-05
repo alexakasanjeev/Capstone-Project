@@ -8,6 +8,7 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,19 +21,21 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class LevelsFragment extends Fragment  implements LoaderManager.LoaderCallbacks<Cursor>{
+public class LevelsFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final int LOADER_ID = 876;
-    @BindView(R.id.recycler_levels) RecyclerView levelsList;
+    @BindView(R.id.recycler_levels)
+    RecyclerView levelsList;
     private LevelsAdapter mAdapter;
+
+    private static final String TAG = LevelsFragment.class.getSimpleName();
 
     public LevelsFragment() {
         // Required empty public constructor
     }
 
     public static LevelsFragment newInstance() {
-        LevelsFragment fragment = new LevelsFragment();;
-        return fragment;
+        return new LevelsFragment();
     }
 
     // this method is only called once for this fragment
@@ -49,9 +52,9 @@ public class LevelsFragment extends Fragment  implements LoaderManager.LoaderCal
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_level, container, false);
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
 
-        mAdapter = new LevelsAdapter(null,getActivity());
+        mAdapter = new LevelsAdapter(null, getActivity());
         GridLayoutManager manager = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
 
         manager.setSpanSizeLookup(
@@ -65,7 +68,7 @@ public class LevelsFragment extends Fragment  implements LoaderManager.LoaderCal
         levelsList.setLayoutManager(manager);
         levelsList.setAdapter(mAdapter);
 
-        getActivity().getSupportLoaderManager().initLoader(LOADER_ID,null,this);
+        getActivity().getSupportLoaderManager().initLoader(LOADER_ID, null, this);
 
         return view;
     }
@@ -73,16 +76,15 @@ public class LevelsFragment extends Fragment  implements LoaderManager.LoaderCal
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(getActivity(), ZodisContract.LevelEntry.CONTENT_URI,null,null,null,null);
+        return new CursorLoader(getActivity(), ZodisContract.LevelEntry.CONTENT_URI, null, null, null, null);
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        if (data!=null &&data.getCount()>0) {
+        if (data != null && data.getCount() > 0) {
             mAdapter.swapCursor(data);
-        }else{
-            // TODO: 12/1/2017 Show error message, database problem
-            Toast.makeText(getActivity(), "Level Database is empty", Toast.LENGTH_SHORT).show();
+        }else {
+            Log.e(TAG, "onLoadFinished: Unable to fetch data correctly");
         }
     }
 

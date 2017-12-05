@@ -35,7 +35,7 @@ public class ZodisWidgetService extends IntentService {
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        if (intent!=null) {
+        if (intent != null) {
             final String action = intent.getAction();
             if (ACTION_UPDATE_ALL_WIDGET.equals(action)) {
                 handleActionUpdateAllWidgets();
@@ -48,6 +48,6 @@ public class ZodisWidgetService extends IntentService {
         int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(this, ZodisWidget.class));
         //Now update all widgets
         appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widgetListView);
-        ZodisWidget.updateAllWidgets(this, appWidgetManager,appWidgetIds);
+        ZodisWidget.updateAllWidgets(this, appWidgetManager, appWidgetIds);
     }
 }

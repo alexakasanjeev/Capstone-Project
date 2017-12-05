@@ -1,36 +1,27 @@
 package com.betatech.alex.zodis.ui.login;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.betatech.alex.zodis.ui.MainActivity;
 import com.betatech.alex.zodis.R;
 import com.betatech.alex.zodis.utilities.LoginUtils;
 import com.betatech.alex.zodis.utilities.NetworkUtils;
 import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.OptionalPendingResult;
-import com.google.android.gms.common.api.ResultCallback;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
+public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
     private GoogleApiClient mGoogleApiClient;
-    private static final int RC_SIGN_IN = 007;
+    private static final int RC_SIGN_IN = 101;
     private final String TAG = "ZODIS";
 
     @Override
@@ -39,21 +30,21 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
-        mGoogleApiClient = LoginUtils.getGoogleApiClient(this,this);
+        mGoogleApiClient = LoginUtils.getGoogleApiClient(this, this);
     }
 
     @OnClick(R.id.button_sign_in)
-    public void signIn(){
+    public void signIn() {
         if (NetworkUtils.isOnline(this)) {
             Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
             startActivityForResult(signInIntent, RC_SIGN_IN);
-        }else{
+        } else {
             Toast.makeText(this, R.string.no_internet_message, Toast.LENGTH_SHORT).show();
         }
     }
 
     @OnClick(R.id.button_skip)
-    public void skip(){
+    public void skip() {
         finish();
     }
 
@@ -74,7 +65,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     @Override
     public void onPause() {
         super.onPause();
-        if(mGoogleApiClient!=null){
+        if (mGoogleApiClient != null) {
             mGoogleApiClient.stopAutoManage(this);
             mGoogleApiClient.disconnect();
         }
@@ -85,7 +76,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     public void onStop() {
         super.onStop();
         // stop GoogleApiClient
-        if (mGoogleApiClient!=null && mGoogleApiClient.isConnected()) {
+        if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
             mGoogleApiClient.disconnect();
         }
     }
@@ -93,7 +84,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private void handleSignInResult(GoogleSignInResult result) {
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
-            LoginUtils.initUserDetails(this,result);
+            LoginUtils.initUserDetails(this, result);
             finish();
         }
     }

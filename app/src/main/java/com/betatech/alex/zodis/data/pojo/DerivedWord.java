@@ -22,7 +22,7 @@ public class DerivedWord implements Parcelable {
         derivedWordDescription = in.readString();
     }
 
-    protected DerivedWord(Parcel in) {
+    private DerivedWord(Parcel in) {
         readFromParcel(in);
     }
 
@@ -54,15 +54,9 @@ public class DerivedWord implements Parcelable {
         return derivedWordName;
     }
 
-    public void setDerivedWordName(String derivedWordName) {
-        this.derivedWordName = derivedWordName;
-    }
 
     public String getDerivedWordDescription() {
         return derivedWordDescription;
     }
 
-    public void setDerivedWordDescription(String derivedWordDescription) {
-        this.derivedWordDescription = derivedWordDescription;
-    }
 }

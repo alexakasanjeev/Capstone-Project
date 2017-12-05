@@ -23,21 +23,21 @@ import java.util.ArrayList;
  */
 
 class ZodisSyncTask {
-    private static final String TAG  = ZodisSyncTask.class.getSimpleName();
+    private static final String TAG = ZodisSyncTask.class.getSimpleName();
 
-    synchronized static void syncZodis(Context context){
+    synchronized static void syncZodis(Context context) {
 
         try {
             String jsonResult = loadJsonFromAsset(context);
-            if (jsonResult!=null && jsonResult.length()>0) {
+            if (jsonResult != null && jsonResult.length() > 0) {
                 ArrayList<ContentProviderOperation> contentProviderOperations = ZodisJsonUtils.getZodisContentProviderOperationsFromJson(jsonResult);
 
-                if (contentProviderOperations.size()>0) {
-                    context.getContentResolver().applyBatch(ZodisContract.CONTENT_AUTHORITY,contentProviderOperations);
+                if (contentProviderOperations.size() > 0) {
+                    context.getContentResolver().applyBatch(ZodisContract.CONTENT_AUTHORITY, contentProviderOperations);
                     /*Save the status of database into SharedPreference*/
-                    ZodisPreferences.saveDatabaseStatusPref(context,true);
+                    ZodisPreferences.saveDatabaseStatusPref(context, true);
                 }
-            }else{
+            } else {
                 Log.e(TAG, "syncZodis: Unable to read file");
             }
         } catch (IOException e) {
@@ -52,7 +52,6 @@ class ZodisSyncTask {
             e.printStackTrace();
         }
     }
-
 
 
     private static String loadJsonFromAsset(Context context) throws IOException {

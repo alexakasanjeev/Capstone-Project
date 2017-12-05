@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * Collection of 10 question
  */
 
-public class QuestionBank implements Parcelable{
+public class QuestionBank implements Parcelable {
 
     private ArrayList<Question> questions;
     private ArrayList<String> possibleAnswersForRoot;
@@ -21,7 +21,7 @@ public class QuestionBank implements Parcelable{
         this.possibleAnswersForDerived = possibleAnswersForDerived;
     }
 
-    protected QuestionBank(Parcel in) {
+    private QuestionBank(Parcel in) {
         readFromParcel(in);
     }
 
@@ -47,25 +47,16 @@ public class QuestionBank implements Parcelable{
         return questions;
     }
 
-    public void setQuestions(ArrayList<Question> questions) {
-        this.questions = questions;
-    }
 
     public ArrayList<String> getPossibleAnswersForRoot() {
         return possibleAnswersForRoot;
     }
 
-    public void setPossibleAnswersForRoot(ArrayList<String> possibleAnswersForRoot) {
-        this.possibleAnswersForRoot = possibleAnswersForRoot;
-    }
 
     public ArrayList<String> getPossibleAnswersForDerived() {
         return possibleAnswersForDerived;
     }
 
-    public void setPossibleAnswersForDerived(ArrayList<String> possibleAnswersForDerived) {
-        this.possibleAnswersForDerived = possibleAnswersForDerived;
-    }
 
     @Override
     public int describeContents() {

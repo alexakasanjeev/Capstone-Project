@@ -86,4 +86,8 @@
     <string name="interstitialId" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
     <string name="google_plus_share_message">Hello everyone! Just learnt some awesome root words on \"Zodis\" app. Go and download the app today.</string>
     <string name="quiz_continue_button_content_description">Click to see next question</string>
+    <string name="database_error">Problem fetching data from database!</string>
+    <string name="database_empty">Database is empty!</string>
+    <string name="quiz_error">Unable to start QuizActivity!</string>
+    <string name="google_connection_failed">Connection failed!</string>
 </resources>

@@ -2,10 +2,8 @@ package com.betatech.alex.zodis.ui.quiz;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.Toast;
+import android.support.v7.app.AppCompatActivity;
 
 import com.betatech.alex.zodis.R;
 import com.betatech.alex.zodis.ui.lesson.LessonActivity;
@@ -14,7 +12,6 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.plus.PlusShare;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -22,7 +19,9 @@ import butterknife.OnClick;
 
 public class ShareActivity extends AppCompatActivity {
 
-    /** Showing Interstitial Ad when user click Continue button*/
+    /**
+     * Showing Interstitial Ad when user click Continue button
+     */
     private InterstitialAd mInterstitialAd;
 
 
@@ -33,10 +32,10 @@ public class ShareActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        int lessonId = -1;
+        int lessonId;
 
-        if (getIntent()!=null) {
-            lessonId = getIntent().getIntExtra(LessonActivity.KEY_LESSON_ID,-1);
+        if (getIntent() != null) {
+            lessonId = getIntent().getIntExtra(LessonActivity.KEY_LESSON_ID, -1);
             QuizUtils.increaseXP(this, String.valueOf(lessonId));
         }
 
@@ -51,7 +50,7 @@ public class ShareActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.button_share_score)
-    public void shareScore(){
+    public void shareScore() {
         // Launch the Google+ share dialog with attribution to your app.
         Intent shareIntent = new PlusShare.Builder(this)
                 .setType("text/plain")
@@ -67,7 +66,7 @@ public class ShareActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.button_continue)
-    public void exit(){
+    public void exit() {
         if (mInterstitialAd.isLoaded()) {
             mInterstitialAd.show();
         }

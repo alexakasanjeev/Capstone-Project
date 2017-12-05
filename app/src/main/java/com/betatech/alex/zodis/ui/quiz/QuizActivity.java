@@ -3,9 +3,9 @@ package com.betatech.alex.zodis.ui.quiz;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -28,23 +28,31 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class QuizActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener{
+public class QuizActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
 
 
     public static final String KEY_DATA = "DATA";
     private static final String STATE_QUESTION_BANK = "question_bank";
     private static final String STATE_GAME = "game_state";
     private static final String STATE_CORRECT_OR_NOT = "correct_or_not";
-    private ArrayList<RootWord>  dataList;
+    private ArrayList<RootWord> dataList;
 
-    @BindView(R.id.radio_group_answers) RadioGroup radioGroup;
-    @BindView(R.id.button_check) Button checkButton;
-    @BindView(R.id.button_continue) Button continueButton;
-    @BindView(R.id.progressBar) ProgressBar progressBar;
-    @BindView(R.id.text_quiz_question) TextView quizQuestionTextView;
-    @BindView(R.id.linear_result_background) LinearLayout resultBackgroundLinearLayout;
-    @BindView(R.id.text_quiz_result) TextView questionResultTextView;
-    @BindView(R.id.text_correct_answer) TextView correctAnswerTextView;
+    @BindView(R.id.radio_group_answers)
+    RadioGroup radioGroup;
+    @BindView(R.id.button_check)
+    Button checkButton;
+    @BindView(R.id.button_continue)
+    Button continueButton;
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
+    @BindView(R.id.text_quiz_question)
+    TextView quizQuestionTextView;
+    @BindView(R.id.linear_result_background)
+    LinearLayout resultBackgroundLinearLayout;
+    @BindView(R.id.text_quiz_result)
+    TextView questionResultTextView;
+    @BindView(R.id.text_correct_answer)
+    TextView correctAnswerTextView;
 
     private QuestionBank questionBank;
     /*
@@ -68,14 +76,13 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
 
         ButterKnife.bind(this);
 
-        if (getIntent()!=null) {
+        if (getIntent() != null) {
             dataList = getIntent().getParcelableArrayListExtra(KEY_DATA);
-            lessonId = getIntent().getIntExtra(LessonActivity.KEY_LESSON_ID,-1);
+            lessonId = getIntent().getIntExtra(LessonActivity.KEY_LESSON_ID, -1);
         }
 
-        if(dataList==null){
-            // TODO: 12/4/2017 put all strings in strings.xml
-            Toast.makeText(this, "Unable to start Quiz!", Toast.LENGTH_SHORT).show();
+        if (dataList == null) {
+            Toast.makeText(this, getString(R.string.quiz_error), Toast.LENGTH_SHORT).show();
             finish();
         }
 
@@ -89,7 +96,7 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
             gameState = savedInstanceState.getInt(STATE_GAME);
             whetherUserWasCorrectOrNot = savedInstanceState.getInt(STATE_CORRECT_OR_NOT);
 
-        }else{
+        } else {
             questionBank = QuizUtils.generateTenQuestions(dataList);
         }
 
@@ -100,7 +107,7 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
     }
 
     private void init() {
-        if (questionBank.getQuestions().size()>0) {
+        if (questionBank.getQuestions().size() > 0) {
 
             Question question = questionBank.getQuestions().get(0);
             quizQuestionTextView.setText(getString(R.string.question_frame, question.getQuestion()));
@@ -108,12 +115,12 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
             ArrayList<String> answers;
             if (question.isRootWord()) {
                 answers = questionBank.getPossibleAnswersForRoot();
-            }else{
+            } else {
                 answers = questionBank.getPossibleAnswersForDerived();
             }
 
             for (int i = 0; i < 5; i++) {
-                ((RadioButton)radioGroup.getChildAt(i)).setText(answers.get(i));
+                ((RadioButton) radioGroup.getChildAt(i)).setText(answers.get(i));
             }
 
             enableDisableViews(question);
@@ -156,32 +163,32 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
     public void onCheckedChanged(RadioGroup group, int checkedId) {
 
         checkButton.setEnabled(true);
-        if(gameState == 0)
+        if (gameState == 0)
             gameState = 1;
 
     }
 
     @OnClick(R.id.button_continue)
-    public void nextQuestion(){
+    public void nextQuestion() {
         radioGroup.clearCheck();
-        if (questionBank.getQuestions().size()>0) {
-            Question previousQuestion =questionBank.getQuestions().remove(0);
-            if (whetherUserWasCorrectOrNot==0) {
+        if (questionBank.getQuestions().size() > 0) {
+            Question previousQuestion = questionBank.getQuestions().remove(0);
+            if (whetherUserWasCorrectOrNot == 0) {
                 questionBank.getQuestions().add(previousQuestion);
             }
-            if (questionBank.getQuestions().size()==0) {
+            if (questionBank.getQuestions().size() == 0) {
                 finishQuiz();
             }
             whetherUserWasCorrectOrNot = -1;
             gameState = 0;
             init();
-        }else{
+        } else {
             finishQuiz();
         }
     }
 
     @OnClick(R.id.button_check)
-    public void check(){
+    public void check() {
         boolean isAnyOneChecked = false;
         for (int i = 0; i < radioGroup.getChildCount(); i++) {
             isAnyOneChecked = ((RadioButton) radioGroup.getChildAt(i)).isChecked();
@@ -197,13 +204,13 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
         gameState = 2;
 
         int id = radioGroup.getCheckedRadioButtonId();
-        String userAnswer = ((RadioButton)radioGroup.findViewById(id)).getText().toString();
+        String userAnswer = ((RadioButton) radioGroup.findViewById(id)).getText().toString();
         Question question = questionBank.getQuestions().get(0);
 
         if (question.getAnswer().equals(userAnswer)) {
             progressBar.incrementProgressBy(10);
-            whetherUserWasCorrectOrNot =1;
-        }else{
+            whetherUserWasCorrectOrNot = 1;
+        } else {
             whetherUserWasCorrectOrNot = 0;
         }
         enableDisableViews(question);
@@ -211,7 +218,7 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
 
     }
 
-    private void correctAnswer(){
+    private void correctAnswer() {
         resultBackgroundLinearLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimaryRelishDark));
         questionResultTextView.setText(getResources().getString(R.string.correct_message));
         correctAnswerTextView.setVisibility(View.GONE);
@@ -219,10 +226,10 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
         disableRadioGroup();
     }
 
-    private void wrongAnswer(String answer){
+    private void wrongAnswer(String answer) {
         resultBackgroundLinearLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimaryKetchupDark));
         questionResultTextView.setText(getResources().getString(R.string.wrong_message));
-        correctAnswerTextView.setText(getResources().getString(R.string.right_answer_message,answer));
+        correctAnswerTextView.setText(getResources().getString(R.string.right_answer_message, answer));
         checkButton.setText(R.string.aq_button_continue_message);
         correctAnswerTextView.setVisibility(View.VISIBLE);
         resultBackgroundLinearLayout.setVisibility(View.VISIBLE);
@@ -230,7 +237,7 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
     }
 
     @OnClick(R.id.image_button_cancel)
-    public void createAlertDialog(){
+    public void createAlertDialog() {
         AlertDialog.Builder builder;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             builder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Light_Dialog_Alert);
@@ -257,13 +264,13 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
         createAlertDialog();
     }
 
-    private void disableRadioGroup(){
+    private void disableRadioGroup() {
         for (int i = 0; i < radioGroup.getChildCount(); i++) {
             radioGroup.getChildAt(i).setEnabled(false);
         }
     }
 
-    private void enableRadioGroup(){
+    private void enableRadioGroup() {
         for (int i = 0; i < radioGroup.getChildCount(); i++) {
             radioGroup.getChildAt(i).setEnabled(true);
         }
@@ -277,15 +284,13 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
         savedInstanceState.putInt(STATE_CORRECT_OR_NOT, whetherUserWasCorrectOrNot);
 
 
-
-
         // Always call the superclass so it can save the view hierarchy state
         super.onSaveInstanceState(savedInstanceState);
     }
 
-    private void finishQuiz(){
-        Intent intent = new Intent(this,ShareActivity.class);
-        intent.putExtra(LessonActivity.KEY_LESSON_ID,lessonId);
+    private void finishQuiz() {
+        Intent intent = new Intent(this, ShareActivity.class);
+        intent.putExtra(LessonActivity.KEY_LESSON_ID, lessonId);
         startActivity(intent);
         finish();
     }
