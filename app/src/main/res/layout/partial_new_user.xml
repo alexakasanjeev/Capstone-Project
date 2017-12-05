@@ -63,7 +63,10 @@
 
     </LinearLayout>
 
+
+    <!-- This view is not shown in production, it will always remain hidden-->
     <LinearLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -78,6 +81,7 @@
             android:text="@string/level_completed"/>
 
         <TextView
+
             android:id="@+id/text_user_lesson_completed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

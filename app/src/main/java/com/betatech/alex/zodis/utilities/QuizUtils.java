@@ -64,7 +64,6 @@ public class QuizUtils {
             ContentValues contentValues = new ContentValues();
             contentValues.put(ZodisContract.LevelEntry.COLUMN_LEVEL_STATUS,1);
             context.getContentResolver().update(ZodisContract.LevelEntry.CONTENT_URI,contentValues,selections,selectionArgs);
-            ZodisPreferences.incrementLessonCompletedPref(context);
             ZodisPreferences.incrementXpPref(context);
             ZodisWidgetService.startActionUpdateAllWidgets(context);
 

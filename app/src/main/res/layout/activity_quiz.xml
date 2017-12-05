@@ -182,14 +182,32 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button_check"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/selector_button_green"
-        android:stateListAnimator="@null"
-        android:textColor="@android:color/white"
-        android:contentDescription="@string/check_button_content_description"
-        android:layout_margin="@dimen/double_factor"/>
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/button_check"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_button_green"
+            style="?android:attr/borderlessButtonStyle"
+            android:textColor="@android:color/white"
+            android:text="@string/aq_button_check_message"
+            android:contentDescription="@string/check_button_content_description"
+            android:layout_margin="@dimen/double_factor"/>
+
+        <Button
+            android:visibility="gone"
+            android:id="@+id/button_continue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_button_green"
+            android:text="@string/aq_button_continue_message"
+            style="?android:attr/borderlessButtonStyle"
+            android:textColor="@android:color/white"
+            android:contentDescription="@string/quiz_continue_button_content_description"
+            android:layout_margin="@dimen/double_factor"/>
+    </FrameLayout>
+
 
 </LinearLayout>

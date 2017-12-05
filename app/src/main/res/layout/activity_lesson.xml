@@ -46,6 +46,7 @@
             android:layout_width="@dimen/button_default_height"
             android:layout_height="@dimen/button_default_height"
             app:srcCompat="@drawable/ic_left"
+            style="?android:attr/borderlessButtonStyle"
             android:contentDescription="@string/button_left_content_description"
             android:background="@drawable/selector_button_blue"
             />
@@ -57,7 +58,7 @@
             android:textColor="@android:color/white"
             android:text="@string/al_button_quiz"
             android:enabled="false"
-            android:stateListAnimator="@null"
+            style="?android:attr/borderlessButtonStyle"
             android:contentDescription="@string/quiz_button_content_description"
             android:layout_height="@dimen/button_default_height"
             android:background="@drawable/selector_button_purple"
@@ -70,6 +71,7 @@
             android:layout_width="@dimen/button_default_height"
             android:layout_height="@dimen/button_default_height"
             android:contentDescription="@string/button_right_content_description"
+            style="?android:attr/borderlessButtonStyle"
             app:srcCompat="@drawable/ic_right"
             android:background="@drawable/selector_button_blue"/>
 

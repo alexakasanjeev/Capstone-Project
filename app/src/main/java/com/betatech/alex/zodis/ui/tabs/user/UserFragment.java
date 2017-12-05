@@ -1,6 +1,7 @@
 package com.betatech.alex.zodis.ui.tabs.user;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,6 +9,9 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.betatech.alex.zodis.R;
+import com.betatech.alex.zodis.data.ZodisContract;
 import com.betatech.alex.zodis.data.ZodisPreferences;
 import com.betatech.alex.zodis.utilities.ImageUtils;
 import com.betatech.alex.zodis.utilities.LoginUtils;
@@ -39,13 +44,13 @@ import butterknife.OnClick;
 
 public class UserFragment extends Fragment implements GoogleApiClient.OnConnectionFailedListener{
 
+    private static final int LOADER_ID = 876;
     @BindView(R.id.button_sign_in) Button signInButton;
     @BindView(R.id.linear_guest_profile) LinearLayout guestProfileLinearLayout;
     @BindView(R.id.linear_user_profile) LinearLayout userProfileLinearLayout;
     @BindView(R.id.image_user_profile_pic) ImageView userProfileImageView;
     @BindView(R.id.text_user_name) TextView userNameTextView;
     @BindView(R.id.text_user_xp_score) TextView xpEarnedTextView;
-    @BindView(R.id.text_user_lesson_completed) TextView lessonCompletedTextView;
     @BindView(R.id.progressBar) ProgressBar progressBar;
 
     private GoogleApiClient mGoogleApiClient = null;
@@ -179,11 +184,9 @@ public class UserFragment extends Fragment implements GoogleApiClient.OnConnecti
         String photoUrlPref = ZodisPreferences.getPhotoUrlPref(getActivity());
         String userName = ZodisPreferences.getUserNamePref(getActivity());
         int userXpScore = ZodisPreferences.getXpEarnPref(getActivity());
-        int userLessonCompleted = ZodisPreferences.getLessonCompletedPref(getActivity());
 
         userNameTextView.setText(userName);
         xpEarnedTextView.setText(getString(R.string.xp_message,userXpScore));
-        lessonCompletedTextView.setText(getString(R.string.level_messages,userLessonCompleted,10));
 
         if (photoUrlPref!=null && photoUrlPref.length()>0) {
             ImageUtils.loadImage(getActivity(),userProfileImageView, photoUrlPref);
@@ -208,5 +211,6 @@ public class UserFragment extends Fragment implements GoogleApiClient.OnConnecti
         Log.d("TAG","Connection Failed");
         Toast.makeText(getActivity(), "Unable to connect", Toast.LENGTH_SHORT).show();
     }
+
 
 }

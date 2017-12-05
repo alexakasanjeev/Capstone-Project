@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.quiz.QuizActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="@dimen/double_factor">
+
+        <ImageButton
+            android:id="@+id/image_button_cancel"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_cancel"
+            android:layout_marginRight="@dimen/double_factor"
+            android:contentDescription="@string/cancel_button_content_description"
+            android:background="@android:color/transparent"
+            android:layout_marginEnd="@dimen/double_factor" />
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginRight="@dimen/base_factor"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="@dimen/base_factor">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/below_progress_bar_padding"
+                android:background="@drawable/button_disabled"
+                android:layout_marginEnd="@dimen/below_progress_bar_padding" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminate="false"
+                android:maxHeight="8dp"
+                android:minHeight="8dp"
+                android:max="100"
+                android:progress="0"
+                android:progressDrawable="@drawable/progress_green"/>
+        </FrameLayout>
+
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="@dimen/double_factor">
+
+        <TextView
+            android:id="@+id/text_quiz_question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/double_factor"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorSecondaryText"
+            tools:text="Question 1"/>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RadioGroup
+                    android:id="@+id/radio_group_answers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <RadioButton
+                        android:id="@+id/radioButtonOne"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/colorHintText"
+                        android:background="@drawable/white_corner_background"
+                        android:padding="@dimen/double_factor"
+                        android:layout_marginBottom="@dimen/double_factor"
+                        tools:text="RadioButton 1"
+                        android:contentDescription="@string/radio_button_one_content_description"/>
+
+                    <RadioButton
+                        android:id="@+id/radioButtonTwo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/colorHintText"
+                        android:background="@drawable/white_corner_background"
+                        android:padding="@dimen/double_factor"
+                        android:layout_marginBottom="@dimen/double_factor"
+                        tools:text="RadioButton 2"
+                        android:contentDescription="@string/radio_button_two_content_description"/>
+
+                    <RadioButton
+                        android:id="@+id/radioButtonThree"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/colorHintText"
+                        android:background="@drawable/white_corner_background"
+                        android:padding="@dimen/double_factor"
+                        android:layout_marginBottom="@dimen/double_factor"
+                        tools:text="RadioButton 3"
+                        android:contentDescription="@string/radio_button_three_content_description"/>
+
+                    <RadioButton
+                        android:id="@+id/radioButtonFour"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/colorHintText"
+                        android:background="@drawable/white_corner_background"
+                        android:padding="@dimen/double_factor"
+                        android:layout_marginBottom="@dimen/double_factor"
+                        tools:text="RadioButton 4"
+                        android:contentDescription="@string/radio_button_four_content_description"/>
+
+                    <RadioButton
+                        android:id="@+id/radioButtonFive"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/colorHintText"
+                        android:background="@drawable/white_corner_background"
+                        android:padding="@dimen/double_factor"
+                        android:layout_marginBottom="@dimen/double_factor"
+                        tools:text="RadioButton 5"
+                        android:contentDescription="@string/radio_button_five_content_description"/>
+                </RadioGroup>
+
+                <LinearLayout
+                    android:id="@+id/linear_result_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/double_factor"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/text_quiz_result"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="22sp"
+                        android:gravity="center"
+                        tools:text="Correct!"
+                        android:layout_marginBottom="@dimen/base_factor"
+                        android:textColor="@android:color/white"
+                        />
+
+                    <TextView
+                        android:id="@+id/text_correct_answer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@android:color/white"
+                        tools:text="Correct answer is :"/>
+                </LinearLayout>
+
+
+
+            </FrameLayout>
+        </ScrollView>
+
+
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/button_check"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_button_green"
+            style="?android:attr/borderlessButtonStyle"
+            android:textColor="@android:color/white"
+            android:text="@string/aq_button_check_message"
+            android:contentDescription="@string/check_button_content_description"
+            android:layout_margin="@dimen/double_factor"/>
+
+        <Button
+            android:visibility="gone"
+            android:id="@+id/button_continue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_button_green"
+            android:text="@string/aq_button_continue_message"
+            style="?android:attr/borderlessButtonStyle"
+            android:textColor="@android:color/white"
+            android:contentDescription="@string/quiz_continue_button_content_description"
+            android:layout_margin="@dimen/double_factor"/>
+    </FrameLayout>
+
+
+</LinearLayout>

@@ -19,6 +19,7 @@ import com.betatech.alex.zodis.data.ZodisContract;
 import com.betatech.alex.zodis.data.ZodisPreferences;
 import com.betatech.alex.zodis.ui.lesson.LessonActivity;
 import com.betatech.alex.zodis.ui.lesson.LessonSlidePageFragment;
+import com.betatech.alex.zodis.ui.quiz.ShareActivity;
 import com.betatech.alex.zodis.widget.ZodisWidgetService;
 
 import butterknife.BindView;

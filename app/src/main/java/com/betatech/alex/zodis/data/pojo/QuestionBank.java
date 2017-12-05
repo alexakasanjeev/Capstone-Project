@@ -1,12 +1,15 @@
 package com.betatech.alex.zodis.data.pojo;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
 /**
  * Collection of 10 question
  */
 
-public class QuestionBank {
+public class QuestionBank implements Parcelable{
 
     private ArrayList<Question> questions;
     private ArrayList<String> possibleAnswersForRoot;
@@ -17,6 +20,28 @@ public class QuestionBank {
         this.possibleAnswersForRoot = possibleAnswersForRoot;
         this.possibleAnswersForDerived = possibleAnswersForDerived;
     }
+
+    protected QuestionBank(Parcel in) {
+        readFromParcel(in);
+    }
+
+    private void readFromParcel(Parcel in) {
+        questions = in.createTypedArrayList(Question.CREATOR);
+        possibleAnswersForRoot = in.createStringArrayList();
+        possibleAnswersForDerived = in.createStringArrayList();
+    }
+
+    public static final Creator<QuestionBank> CREATOR = new Creator<QuestionBank>() {
+        @Override
+        public QuestionBank createFromParcel(Parcel in) {
+            return new QuestionBank(in);
+        }
+
+        @Override
+        public QuestionBank[] newArray(int size) {
+            return new QuestionBank[size];
+        }
+    };
 
     public ArrayList<Question> getQuestions() {
         return questions;
@@ -40,5 +65,17 @@ public class QuestionBank {
 
     public void setPossibleAnswersForDerived(ArrayList<String> possibleAnswersForDerived) {
         this.possibleAnswersForDerived = possibleAnswersForDerived;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeTypedList(questions);
+        dest.writeStringList(possibleAnswersForRoot);
+        dest.writeStringList(possibleAnswersForDerived);
     }
 }

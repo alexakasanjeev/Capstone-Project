@@ -17,9 +17,7 @@ public class ZodisPreferences {
     public static final String PREF_USER_NAME = "user_name";
     public static final String PREF_USER_PHOTO_URL = "user_photo_url";
     public static final String PREF_XP_EARN = "xp";
-    public static final String PREF_LESSON_COMPLETED = "lesson_completed";
     public static final String PREF_FIRST_TIME = "first_time_app_open";
-    public static final String PREF_NOTIFICATION_HOUR = "hour_to_schedule";
 
 
     /* Get first time status : true or false*/
@@ -79,25 +77,6 @@ public class ZodisPreferences {
         SharedPreferences.Editor editor = sp.edit();
         int xp = sp.getInt(PREF_XP_EARN,0);
         editor.putInt(PREF_XP_EARN, xp+10);
-        editor.apply();
-    }
-
-    /* Get lesson completed out of total*/
-    public static int getLessonCompletedPref(Context context) {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-
-        return sp.getInt(PREF_LESSON_COMPLETED,0);
-    }
-
-    public static void incrementLessonCompletedPref(Context context) {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = sp.edit();
-        int count = sp.getInt(PREF_LESSON_COMPLETED,0);
-        /*Max level is 10*/
-        if (count>=10) {
-            return;
-        }
-        editor.putInt(PREF_LESSON_COMPLETED,count + 1 );
         editor.apply();
     }
 

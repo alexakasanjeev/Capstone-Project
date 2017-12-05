@@ -73,4 +73,17 @@
     <string name="radio_button_five_content_description">Choice fifth</string>
     <string name="tick_image_content_description">Image of a check mark</string>
     <string name="level_image_content_description">Unique image for each level</string>
+    <string name="practice_completed">Practice complete!</string>
+    <string name="_10xp">+10XP!</string>
+    <string name="continue_button_content_description">Exit</string>
+    <string name="share_button_content_description">Click to share your victory on your google + profile</string>
+    <string name="victory_image_content_description">Image of a trophy</string>
+    <string name="share_on_google_text">Share on Google+</string>
+    <string name="continue_text">Continue</string>
+
+
+    <!--Interstitial Ad Test id-->
+    <string name="interstitialId" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="google_plus_share_message">Hello everyone! Just learnt some awesome root words on \"Zodis\" app. Go and download the app today.</string>
+    <string name="quiz_continue_button_content_description">Click to see next question</string>
 </resources>

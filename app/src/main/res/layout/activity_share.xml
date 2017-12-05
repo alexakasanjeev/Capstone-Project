@@ -1,9 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.quiz.ShareActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/double_factor"
+        android:layout_marginStart="@dimen/double_factor"
+        android:layout_marginTop="@dimen/double_factor"
+        android:layout_marginBottom="@dimen/double_factor"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/double_factor"
+            android:layout_marginRight="@dimen/double_factor"
+            android:text="@string/practice_completed"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_10xp"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="@dimen/double_factor">
+
+        <ImageView
+            android:layout_width="@dimen/trophy_size"
+            android:layout_height="@dimen/trophy_size"
+            android:layout_gravity="center"
+            android:contentDescription="@string/victory_image_content_description"
+            app:srcCompat="@drawable/ic_trophy" />
+    </FrameLayout>
+
+
+
+
+
+    <Button
+        android:id="@+id/button_share_score"
+        android:layout_width="@dimen/btn_sign_in_width"
+        android:layout_height="@dimen/button_default_height"
+        android:background="@drawable/selector_button_blue"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="@dimen/double_factor"
+        android:contentDescription="@string/share_button_content_description"
+        android:layout_marginRight="@dimen/double_factor"
+        android:textColor="@android:color/white"
+        android:text="@string/share_on_google_text"
+        android:textSize="18sp"
+        style="?android:attr/borderlessButtonStyle"
+        android:textStyle="bold"
+        />
+
+    <Button
+        android:id="@+id/button_continue"
+        android:contentDescription="@string/continue_button_content_description"
+        android:layout_width="@dimen/btn_sign_in_width"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="@dimen/button_default_height"
+        android:background="@drawable/selector_button_purple"
+        android:layout_margin="@dimen/double_factor"
+        android:textColor="@android:color/white"
+        android:text="@string/continue_text"
+        style="?android:attr/borderlessButtonStyle"
+        android:textSize="18sp"
+        android:textStyle="bold"
+/>
+
+</LinearLayout>

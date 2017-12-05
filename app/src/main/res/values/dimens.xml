@@ -30,6 +30,7 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     <!-- Varying size Dimension-->
     <dimen name="container_width_portrait">@dimen/match_parent</dimen>
     <dimen name="below_progress_bar_padding">2dp</dimen>
+    <dimen name="trophy_size">150dp</dimen>
     <item name="match_parent" format="integer" type="dimen">-1</item>
 
 </resources>
