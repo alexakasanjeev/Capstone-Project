@@ -8,12 +8,14 @@ import android.util.Log;
 
 import com.betatech.alex.zodis.data.ZodisContract;
 import com.betatech.alex.zodis.data.ZodisPreferences;
+import com.betatech.alex.zodis.utilities.NetworkUtils;
 import com.betatech.alex.zodis.utilities.ZodisJsonUtils;
 
 import org.json.JSONException;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 
 
@@ -25,20 +27,35 @@ import java.util.ArrayList;
 class ZodisSyncTask {
     private static final String TAG = ZodisSyncTask.class.getSimpleName();
 
-    synchronized static void syncZodis(Context context) {
+    synchronized static boolean syncZodis(Context context) {
+
+        boolean status = false;
 
         try {
-            String jsonResult = loadJsonFromAsset(context);
+
+            URL weatherRequestUrl = NetworkUtils.getUrl(context);
+
+
+            String jsonResult = NetworkUtils.getResponseFromHttpUrl(weatherRequestUrl);
             if (jsonResult != null && jsonResult.length() > 0) {
                 ArrayList<ContentProviderOperation> contentProviderOperations = ZodisJsonUtils.getZodisContentProviderOperationsFromJson(jsonResult);
 
                 if (contentProviderOperations.size() > 0) {
+
+                    /*Delete old data*/
+                    context.getContentResolver().delete(ZodisContract.RootEntry.CONTENT_URI,null,null);
+                    context.getContentResolver().delete(ZodisContract.DerivedEntry.CONTENT_URI,null,null);
+                    context.getContentResolver().delete(ZodisContract.LevelEntry.CONTENT_URI,null,null);
+
+                    /*Populate the database with new data*/
                     context.getContentResolver().applyBatch(ZodisContract.CONTENT_AUTHORITY, contentProviderOperations);
                     /*Save the status of database into SharedPreference*/
                     ZodisPreferences.saveDatabaseStatusPref(context, true);
+
+                    status= true;
                 }
             } else {
-                Log.e(TAG, "syncZodis: Unable to read file");
+                Log.e(TAG, "syncZodis: Unable to fetch JSON data");
             }
         } catch (IOException e) {
             Log.e(TAG, "syncZodis: Unable to open file");
@@ -51,23 +68,8 @@ class ZodisSyncTask {
         } catch (OperationApplicationException e) {
             e.printStackTrace();
         }
+
+        return status;
     }
 
-
-    private static String loadJsonFromAsset(Context context) throws IOException {
-        String json;
-        try {
-            final String FILE_NAME = "document.json";
-            InputStream is = context.getAssets().open(FILE_NAME);
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        return json;
-    }
 }

@@ -1,7 +1,9 @@
 package com.betatech.alex.zodis.ui.lesson;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Build;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -9,7 +11,12 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.transition.Fade;
+import android.transition.Slide;
+import android.transition.TransitionInflater;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -17,6 +24,7 @@ import android.widget.Toast;
 import com.betatech.alex.zodis.R;
 import com.betatech.alex.zodis.data.ZodisContract;
 import com.betatech.alex.zodis.data.pojo.RootWord;
+import com.betatech.alex.zodis.ui.MainActivity;
 import com.betatech.alex.zodis.ui.quiz.QuizActivity;
 import com.betatech.alex.zodis.utilities.GeneralUtils;
 
@@ -68,6 +76,7 @@ public class LessonActivity extends AppCompatActivity implements LoaderManager.L
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson);
         ButterKnife.bind(this);
+        setupWindowAnimations();
 
         setSupportActionBar(mToolbar);
 
@@ -91,7 +100,7 @@ public class LessonActivity extends AppCompatActivity implements LoaderManager.L
                 quizButton.setEnabled(true);
             }
         }
-        
+
         mToolbar.setTitle(getString(R.string.show_level_name,levelName));
 
         if (lessonId==-1) {
@@ -134,6 +143,19 @@ public class LessonActivity extends AppCompatActivity implements LoaderManager.L
         });
 
         leftButton.setEnabled(false);
+    }
+
+    private void setupWindowAnimations() {
+
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Fade fade = new Fade();
+            fade.setDuration(1000);
+            getWindow().setEnterTransition(fade);
+
+            Slide slide = new Slide();
+            slide.setDuration(1000);
+            getWindow().setReturnTransition(slide);
+        }
     }
 
     @Override
@@ -223,7 +245,13 @@ public class LessonActivity extends AppCompatActivity implements LoaderManager.L
         Intent intent = new Intent(this, QuizActivity.class);
         intent.putParcelableArrayListExtra(QuizActivity.KEY_DATA,list);
         intent.putExtra(LessonActivity.KEY_LESSON_ID,lessonId);
-        startActivity(intent);
+        /* To help default transition between activities*/
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
+            startActivity(intent,bundle);
+        }else{
+            startActivity(intent);
+        }
         finish();
     }
 

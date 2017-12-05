@@ -2,8 +2,11 @@ package com.betatech.alex.zodis.ui.quiz;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Fade;
+import android.transition.Slide;
 
 import com.betatech.alex.zodis.R;
 import com.betatech.alex.zodis.ui.lesson.LessonActivity;
@@ -29,6 +32,7 @@ public class ShareActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share);
+        setupWindowAnimations();
 
         ButterKnife.bind(this);
 
@@ -47,6 +51,19 @@ public class ShareActivity extends AppCompatActivity {
                 .build();
 
         mInterstitialAd.loadAd(request);
+    }
+
+    private void setupWindowAnimations() {
+
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Fade fade = new Fade();
+            fade.setDuration(1000);
+            getWindow().setEnterTransition(fade);
+
+            Slide slide = new Slide();
+            slide.setDuration(1000);
+            getWindow().setReturnTransition(slide);
+        }
     }
 
     @OnClick(R.id.button_share_score)

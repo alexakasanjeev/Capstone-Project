@@ -1,10 +1,12 @@
 package com.betatech.alex.zodis.ui.tabs.levels;
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 
 import com.betatech.alex.zodis.R;
 import com.betatech.alex.zodis.data.ZodisContract;
+import com.betatech.alex.zodis.ui.MainActivity;
 import com.betatech.alex.zodis.ui.lesson.LessonActivity;
 
 import butterknife.BindView;
@@ -116,7 +119,15 @@ public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.LevelsView
             Intent intent = new Intent(mContext, LessonActivity.class);
             intent.putExtra(LessonActivity.KEY_LESSON_ID, lessonId);
             intent.putExtra(LessonActivity.KEY_LEVEL_NAME, levelName);
-            mContext.startActivity(intent);
+
+            /* To help default transition between activities*/
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                Bundle bundle = ActivityOptions.makeSceneTransitionAnimation((MainActivity)mContext).toBundle();
+                mContext.startActivity(intent,bundle);
+            }else{
+                mContext.startActivity(intent);
+            }
+
         }
     }
 }

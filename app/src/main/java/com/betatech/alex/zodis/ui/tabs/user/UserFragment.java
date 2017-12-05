@@ -153,12 +153,11 @@ public class UserFragment extends Fragment implements GoogleApiClient.OnConnecti
     private void handleSignInResult(GoogleSignInResult result) {
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
-            Log.d(TAG, "handleSignInResult: result successful");
             LoginUtils.initUserDetails(getActivity(), result);
             showUserProfile();
         } else {
             showGuestProfile();
-            Log.d(TAG, "handleSignInResult: result failed");
+            Toast.makeText(getActivity(), getString(R.string.cannot_camplete_request), Toast.LENGTH_SHORT).show();
         }
     }
 

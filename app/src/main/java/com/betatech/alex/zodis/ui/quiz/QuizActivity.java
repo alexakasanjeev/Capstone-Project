@@ -1,11 +1,14 @@
 package com.betatech.alex.zodis.ui.quiz;
 
+import android.app.ActivityOptions;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Fade;
+import android.transition.Slide;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -19,6 +22,7 @@ import com.betatech.alex.zodis.R;
 import com.betatech.alex.zodis.data.pojo.Question;
 import com.betatech.alex.zodis.data.pojo.QuestionBank;
 import com.betatech.alex.zodis.data.pojo.RootWord;
+import com.betatech.alex.zodis.ui.MainActivity;
 import com.betatech.alex.zodis.ui.lesson.LessonActivity;
 import com.betatech.alex.zodis.utilities.QuizUtils;
 
@@ -73,6 +77,7 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+        setupWindowAnimations();
 
         ButterKnife.bind(this);
 
@@ -105,6 +110,19 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
         init();
 
     }
+    private void setupWindowAnimations() {
+
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Fade fade = new Fade();
+            fade.setDuration(1000);
+            getWindow().setEnterTransition(fade);
+
+            Slide slide = new Slide();
+            slide.setDuration(1000);
+            getWindow().setReturnTransition(slide);
+        }
+    }
+
 
     private void init() {
         if (questionBank.getQuestions().size() > 0) {
@@ -291,7 +309,14 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
     private void finishQuiz() {
         Intent intent = new Intent(this, ShareActivity.class);
         intent.putExtra(LessonActivity.KEY_LESSON_ID, lessonId);
-        startActivity(intent);
+        /* To help default transition between activities*/
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
+            startActivity(intent,bundle);
+        }else{
+            startActivity(intent);
+        }
+
         finish();
     }
 

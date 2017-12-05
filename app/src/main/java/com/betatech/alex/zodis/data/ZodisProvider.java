@@ -118,8 +118,53 @@ public class ZodisProvider extends ContentProvider {
     }
 
     @Override
-    public int delete(@NonNull Uri uri, @Nullable String selection, @Nullable String[] selectionArgs) {
-        throw new RuntimeException("We are not implementing delete in Zodis");
+    public int delete(@NonNull Uri uri, String selection, String[] selectionArgs) {
+
+        SQLiteDatabase db = mOpenHelper.getReadableDatabase();
+
+        /* Users of the delete method will expect the number of rows deleted to be returned. */
+        int numRowsDeleted;
+
+        /*
+         * If we pass null as the selection to SQLiteDatabase#delete, our entire table will be
+         * deleted. However, if we do pass null and delete all of the rows in the table, we won't
+         * know how many rows were deleted. According to the documentation for SQLiteDatabase,
+         * passing "1" for the selection will delete all rows and return the number of rows
+         * deleted, which is what the caller of this method expects.
+         */
+        if (null == selection) selection = "1";
+
+        switch (sUriMatcher.match(uri)) {
+
+            case CODE_ROOT:
+                numRowsDeleted = db.delete(
+                        ZodisContract.RootEntry.TABLE_NAME,
+                        selection,
+                        selectionArgs);
+
+                break;
+            case CODE_DERIVED:
+                numRowsDeleted = db.delete(
+                        ZodisContract.DerivedEntry.TABLE_NAME,
+                        selection,
+                        selectionArgs);
+                break;
+            case CODE_LEVEL:
+                numRowsDeleted = db.delete(
+                        ZodisContract.LevelEntry.TABLE_NAME,
+                        selection,
+                        selectionArgs);
+                break;
+            default:
+                throw new UnsupportedOperationException("Unknown uri: " + uri);
+        }
+
+        /* If we actually deleted any rows, notify that a change has occurred to this URI */
+        if (numRowsDeleted != 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+
+        return numRowsDeleted;
     }
 
     @Override

@@ -86,6 +86,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             // Signed in successfully, show authenticated UI.
             LoginUtils.initUserDetails(this, result);
             finish();
+        }else{
+            Toast.makeText(this, getString(R.string.cannot_camplete_request), Toast.LENGTH_SHORT).show();
         }
     }
 
