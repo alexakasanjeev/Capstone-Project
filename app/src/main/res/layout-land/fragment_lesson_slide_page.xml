@@ -1,0 +1,66 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="@dimen/double_factor">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="3"
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:layout_marginRight="@dimen/double_factor"
+        android:layout_marginEnd="@dimen/double_factor">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/root_header"
+            android:textColor="@color/colorHintText"
+            android:layout_marginBottom="@dimen/double_factor"/>
+
+        <TextView
+            android:id="@+id/text_root_word"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Root Word"
+            android:textSize="@dimen/flsp_main_text_size"
+            android:textColor="@color/colorPrimaryText"
+            android:textStyle="bold"
+            android:layout_marginRight="@dimen/double_factor"
+            android:layout_marginEnd="@dimen/double_factor" />
+
+        <TextView
+            android:id="@+id/text_description_word"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Root Meaning"
+            android:textSize="@dimen/flsp_secondary_text_size"
+            android:textColor="@color/colorSecondaryText"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="7"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/derived_header"
+            android:textColor="@color/colorHintText"
+            android:layout_marginBottom="@dimen/double_factor"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_derived_words"
+            android:background="@drawable/white_corner_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>

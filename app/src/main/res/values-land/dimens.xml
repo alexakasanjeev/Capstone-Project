@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Varying size Dimension-->
+    <dimen name="container_width_portrait">320dp</dimen>
+
+</resources>

@@ -41,19 +41,13 @@ public class DerivedWordAdapter extends RecyclerView.Adapter<DerivedWordAdapter.
     public void onBindViewHolder(DerivedWordViewHolder holder, int position) {
         if (derivedWords==null) return;
 
-        if (position==0) {
-            holder.nameTextView.setText(mContext.getString(R.string.derived_header));
-            holder.descriptonTextView.setText(mContext.getString(R.string.derived_header));
-            return;
-        }
-
-        holder.nameTextView.setText(derivedWords.get(position-1).getDerivedWordName());
-        holder.descriptonTextView.setText(derivedWords.get(position-1).getDerivedWordDescription());
+        holder.nameTextView.setText(derivedWords.get(position).getDerivedWordName());
+        holder.descriptonTextView.setText(derivedWords.get(position).getDerivedWordDescription());
     }
 
     @Override
     public int getItemCount() {
-        return derivedWords!=null?derivedWords.size() + 1:0;
+        return derivedWords!=null?derivedWords.size():0;
     }
 
     public void swapList(ArrayList<DerivedWord> words){

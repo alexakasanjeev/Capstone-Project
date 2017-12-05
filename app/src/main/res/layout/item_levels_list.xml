@@ -20,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:focusable="true"
         android:clickable="true"
+        android:background="@android:color/white"
         android:foreground="?android:attr/selectableItemBackground">
 
         <LinearLayout
@@ -33,7 +34,7 @@
                 android:id="@+id/image_level_pic"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                app:srcCompat="@drawable/ic_university_temp"
+                android:contentDescription="@string/level_image_content_description"
                 android:layout_marginBottom="@dimen/double_factor"/>
 
             <LinearLayout
@@ -45,15 +46,17 @@
                     android:id="@+id/text_level_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Level A"
+                    tools:text="Level A"
                     android:textColor="@android:color/black"/>
                 <ImageView
+                    android:contentDescription="@string/tick_image_content_description"
                     android:visibility="gone"
                     android:id="@+id/image_tick"
                     android:layout_marginLeft="@dimen/base_factor"
                     android:layout_width="16dp"
                     android:layout_height="16dp"
-                    app:srcCompat="@drawable/ic_checked"/>
+                    app:srcCompat="@drawable/ic_checked"
+                    android:layout_marginStart="@dimen/base_factor" />
             </LinearLayout>
 
         </LinearLayout>

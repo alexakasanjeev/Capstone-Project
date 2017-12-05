@@ -19,7 +19,7 @@
     <include
         android:visibility="gone"
         layout="@layout/partial_new_user"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/container_width_portrait"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

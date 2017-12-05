@@ -31,7 +31,8 @@ public class LessonActivity extends AppCompatActivity implements LoaderManager.L
     // TODO: 12/4/2017 Save state for orientation chnage
 
     public static final String TAG = LessonActivity.class.getSimpleName();
-    private int currentPosition = 0;
+    private static final String STATE_QUIZ_BUTTON_STATE = "quiz_button_state";
+    private int quizButtonState = 0;
 
     /**
      *  Lesson ID KEY
@@ -45,6 +46,7 @@ public class LessonActivity extends AppCompatActivity implements LoaderManager.L
 
     private Cursor rootWordCursor = null;
     private ArrayList<RootWord> list=null;
+    private int lessonId=-1;
 
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
@@ -71,7 +73,7 @@ public class LessonActivity extends AppCompatActivity implements LoaderManager.L
 
         setSupportActionBar(mToolbar);
 
-        int lessonId =-1;
+        lessonId =-1;
         String levelName ="";
         if (getIntent()!=null) {
             lessonId = getIntent().getIntExtra(KEY_LESSON_ID,-1);
@@ -81,6 +83,15 @@ public class LessonActivity extends AppCompatActivity implements LoaderManager.L
         if (getSupportActionBar()!=null) {
             getSupportActionBar().setTitle(levelName);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
+        // Check whether we're recreating a previously destroyed instance
+        if (savedInstanceState != null) {
+            // Restore value of members from saved state
+            quizButtonState = savedInstanceState.getInt(STATE_QUIZ_BUTTON_STATE);
+            if (quizButtonState==1) {
+                quizButton.setEnabled(true);
+            }
         }
 
 
@@ -114,6 +125,7 @@ public class LessonActivity extends AppCompatActivity implements LoaderManager.L
                 if(position==rootWordCursor.getCount()-1){
                     rightButton.setEnabled(false);
                     quizButton.setEnabled(true);
+                    quizButtonState = 1;
                 }else{
                     rightButton.setEnabled(true);
                 }
@@ -212,7 +224,18 @@ public class LessonActivity extends AppCompatActivity implements LoaderManager.L
     public void startQuizActivity(){
         Intent intent = new Intent(this, QuizActivity.class);
         intent.putParcelableArrayListExtra(QuizActivity.KEY_DATA,list);
+        intent.putExtra(LessonActivity.KEY_LESSON_ID,lessonId);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        // Save the user's current game state
+        savedInstanceState.putInt(STATE_QUIZ_BUTTON_STATE, quizButtonState);
+
+
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceState);
     }
 }

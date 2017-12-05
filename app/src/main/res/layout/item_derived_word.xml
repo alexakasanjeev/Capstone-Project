@@ -18,6 +18,9 @@
         android:layout_height="wrap_content"
         android:layout_weight="3"
         android:layout_gravity="center_vertical"
+        android:textColor="@color/colorSecondaryText"
+        android:textStyle="bold"
+        android:textSize="18sp"
         tools:text="Name" />
 
 
@@ -29,6 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         tools:text="Description"
+        android:textColor="@color/colorSecondaryText"
         android:layout_marginLeft="@dimen/base_factor"
         android:layout_marginStart="@dimen/base_factor"/>
 

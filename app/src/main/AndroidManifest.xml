@@ -63,7 +63,8 @@
         </receiver>
         <receiver android:name=".sync.AlarmReceiver" />
 
-        <activity android:name=".ui.quiz.QuizActivity"></activity>
+        <activity android:name=".ui.quiz.QuizActivity" />
+        <activity android:name=".ui.quiz.ShareActivity"></activity>
     </application>
 
 </manifest>

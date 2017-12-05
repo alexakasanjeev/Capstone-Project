@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/top_navigation"
+            android:id="@+id/am_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@android:color/white"
@@ -29,22 +29,22 @@
 
 
     <FrameLayout
-        android:id="@+id/fragment_container"
+        android:id="@+id/am_fragment_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintBottom_toTopOf="@+id/am_bottomNavigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/app_bar_layout" />
 
-    <!--TODO : fix item Icon Tint-->
+
     <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+        android:id="@+id/am_bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="@android:color/white"
-        android:elevation="@dimen/bottom_bar_navgation"
+        android:elevation="@dimen/am_bottomNavigation_elevation"
         app:itemIconTint="@drawable/selector_bottom_bar_icon"
         app:itemTextColor="@drawable/selector_bottom_bar_icon"
         app:layout_constraintBottom_toBottomOf="parent"

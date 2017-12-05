@@ -74,11 +74,11 @@ public class ZodisPreferences {
         return sp.getInt(PREF_XP_EARN,0);
     }
 
-    public static void saveXpEarnPref(Context context, int score) {
+    public static void incrementXpPref(Context context) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sp.edit();
-
-        editor.putInt(PREF_XP_EARN, score);
+        int xp = sp.getInt(PREF_XP_EARN,0);
+        editor.putInt(PREF_XP_EARN, xp+10);
         editor.apply();
     }
 

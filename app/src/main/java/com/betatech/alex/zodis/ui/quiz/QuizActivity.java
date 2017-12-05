@@ -1,9 +1,14 @@
 package com.betatech.alex.zodis.ui.quiz;
 
-import android.support.v4.view.ViewPager;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Build;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -14,6 +19,7 @@ import com.betatech.alex.zodis.R;
 import com.betatech.alex.zodis.data.pojo.Question;
 import com.betatech.alex.zodis.data.pojo.QuestionBank;
 import com.betatech.alex.zodis.data.pojo.RootWord;
+import com.betatech.alex.zodis.ui.lesson.LessonActivity;
 import com.betatech.alex.zodis.utilities.QuizUtils;
 
 import java.util.ArrayList;
@@ -28,15 +34,22 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
 
 
     public static final String KEY_DATA = "DATA";
+    private static final String STATE_LESSION_ID = "lesson_id";
     private ArrayList<RootWord>  dataList;
 
     @BindView(R.id.radio_group_answers) RadioGroup radioGroup;
     @BindView(R.id.button_check) Button buttonCheck;
     @BindView(R.id.progressBar) ProgressBar progressBar;
     @BindView(R.id.text_quiz_question) TextView quizQuestionTextView;
+    @BindView(R.id.linear_result_background) LinearLayout resultBackgroundLinearLayout;
+    @BindView(R.id.text_quiz_result) TextView questionResultTextView;
+    @BindView(R.id.text_correct_answer) TextView correctAnswerTextView;
 
     private QuestionBank questionBank;
-    private int questionNumber=0;
+    private Question currentQuestion = null;
+
+    private boolean isAlternate = false;
+    private int lessonId = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +60,7 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
 
         if (getIntent()!=null) {
             dataList = getIntent().getParcelableArrayListExtra(KEY_DATA);
+            lessonId = getIntent().getIntExtra(LessonActivity.KEY_LESSON_ID,-1);
         }
 
         if(dataList==null){
@@ -56,7 +70,8 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
         }
 
         questionBank = QuizUtils.generateTenQuestions(dataList);
-
+        progressBar.setMax(100);
+        radioGroup.setOnCheckedChangeListener(this);
 
 
         init();
@@ -64,21 +79,31 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
     }
 
     private void init() {
-        buttonCheck.setEnabled(true);
-        buttonCheck.setText("Check");
-        Question question = questionBank.getQuestions().get(questionNumber);
-        quizQuestionTextView.setText(question.getQuestion());
-        ArrayList<String> answers;
-        if (question.isRootWord()) {
-            answers = questionBank.getPossibleAnswersForRoot();
+
+        if (questionBank.getQuestions().size()>0) {
+
+            buttonCheck.setEnabled(false);
+            enableRadioGroup();
+            resultBackgroundLinearLayout.setVisibility(View.GONE);
+            buttonCheck.setText(R.string.aq_button_check_message);
+
+            currentQuestion = questionBank.getQuestions().remove(0);
+            quizQuestionTextView.setText(getString(R.string.question_frame,currentQuestion.getQuestion()));
+
+            ArrayList<String> answers;
+            if (currentQuestion.isRootWord()) {
+                answers = questionBank.getPossibleAnswersForRoot();
+            }else{
+                answers = questionBank.getPossibleAnswersForDerived();
+            }
+
+            Collections.shuffle(answers,new Random(System.nanoTime()));
+
+            for (int i = 0; i < 5; i++) {
+                ((RadioButton)radioGroup.getChildAt(i)).setText(answers.get(i));
+            }
         }else{
-            answers = questionBank.getPossibleAnswersForDerived();
-        }
-
-        Collections.shuffle(answers,new Random(System.nanoTime()));
-
-        for (int i = 0; i < 5; i++) {
-            ((RadioButton)radioGroup.getChildAt(i)).setText(answers.get(i));
+            Toast.makeText(this, "DONE!!!!", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -86,24 +111,112 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
-//        buttonCheck.setEnabled(true);
+        buttonCheck.setEnabled(true);
     }
 
     @OnClick(R.id.button_check)
     public void check(){
-        int id = radioGroup.getCheckedRadioButtonId();
-        String answer = ((RadioButton)radioGroup.findViewById(id)).getText().toString();
-
-        Question question = questionBank.getQuestions().get(questionNumber);
-
-        if (question.getAnswer().equals(answer)) {
-            Toast.makeText(this, "Correct", Toast.LENGTH_SHORT).show();
-            progressBar.incrementProgressBy(progressBar.getProgress()+10);
-        }else{
-            Toast.makeText(this, "Incorrect", Toast.LENGTH_SHORT).show();
+        if (isAlternate) {
+            if(questionBank.getQuestions().size()==0 && currentQuestion == null){
+                Intent intent = new Intent(this,ShareActivity.class);
+                intent.putExtra(LessonActivity.KEY_LESSON_ID,lessonId);
+                startActivity(intent);
+                finish();
+            }
+            init();
+            isAlternate=!isAlternate;
+            buttonCheck.setEnabled(false);
+            return;
         }
+        if (questionBank.getQuestions().size()>0  || currentQuestion !=null) {
+            int id = radioGroup.getCheckedRadioButtonId();
+            String answer = ((RadioButton)radioGroup.findViewById(id)).getText().toString();
 
-        questionNumber++;
-        init();
+
+
+            if (currentQuestion.getAnswer().equals(answer)) {
+                progressBar.incrementProgressBy(10);
+                currentQuestion=null;
+                correctAnswer();
+            }else{
+                questionBank.getQuestions().add(currentQuestion);
+                wrongAnswer(currentQuestion.getAnswer());
+            }
+            currentQuestion=null;
+            radioGroup.clearCheck();
+            isAlternate=!isAlternate;
+
+        }
+    }
+
+    private void correctAnswer(){
+        resultBackgroundLinearLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimaryRelishDark));
+        questionResultTextView.setText(getResources().getString(R.string.correct_message));
+        correctAnswerTextView.setVisibility(View.GONE);
+        buttonCheck.setText(R.string.aq_button_continue_message);
+        questionResultTextView.setVisibility(View.VISIBLE);
+        resultBackgroundLinearLayout.setVisibility(View.VISIBLE);
+        diableRadioGroup();
+    }
+
+    private void wrongAnswer(String answer){
+        resultBackgroundLinearLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimaryKetchupDark));
+        questionResultTextView.setText(getResources().getString(R.string.wrong_message));
+        correctAnswerTextView.setText(getResources().getString(R.string.right_answer_message,answer));
+        buttonCheck.setText(R.string.aq_button_continue_message);
+        correctAnswerTextView.setVisibility(View.VISIBLE);
+        questionResultTextView.setVisibility(View.VISIBLE);
+        resultBackgroundLinearLayout.setVisibility(View.VISIBLE);
+        diableRadioGroup();
+    }
+
+    @OnClick(R.id.image_button_cancel)
+    public void createAlertDialog(){
+        AlertDialog.Builder builder;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            builder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Light_Dialog_Alert);
+        } else {
+            builder = new AlertDialog.Builder(this);
+        }
+        builder.setTitle(R.string.cancel_dialog_title)
+                .setMessage(R.string.cancel_dialog_description)
+                .setPositiveButton(R.string.cancel_dialog_positive_text, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setNegativeButton(R.string.cancel_dialog_negative_text, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        createAlertDialog();
+    }
+
+    private void diableRadioGroup(){
+        for (int i = 0; i < radioGroup.getChildCount(); i++) {
+            radioGroup.getChildAt(i).setEnabled(false);
+        }
+    }
+
+    private void enableRadioGroup(){
+        for (int i = 0; i < radioGroup.getChildCount(); i++) {
+            radioGroup.getChildAt(i).setEnabled(true);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        // Save the user's current game state
+        savedInstanceState.putInt(STATE_LESSION_ID, lessonId);
+
+
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceState);
     }
 }

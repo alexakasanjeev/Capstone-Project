@@ -70,7 +70,9 @@ public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.LevelsView
             holder.cardView.setBackground(mContext.getDrawable(R.drawable.card_view_outline));
             holder.imageViewChecked.setVisibility(View.VISIBLE);
         }else{
+            holder.cardView.setBackgroundColor(mContext.getResources().getColor(android.R.color.white));
             holder.opacityContainerLinearLayout.setAlpha(.38f);
+            holder.imageViewChecked.setVisibility(View.GONE);
         }
 
         holder.cardView.setTag(R.string.KEY_LESSON_ID,lessonId);
@@ -109,16 +111,6 @@ public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.LevelsView
         public void onClick(View v) {
             int lessonId = (int) v.getTag(R.string.KEY_LESSON_ID);
             String levelName = (String) v.getTag(R.string.KEY_LESSON_NAME);
-            /*
-
-            String selections = ZodisContract.LevelEntry.COLUMN_LESSON_ID + " =?";
-            String[] selectionArgs = new String[]{lessonId};
-            ContentValues contentValues = new ContentValues();
-            contentValues.put(ZodisContract.LevelEntry.COLUMN_LEVEL_STATUS,1);
-            mContext.getContentResolver().update(ZodisContract.LevelEntry.CONTENT_URI,contentValues,selections,selectionArgs);
-            ZodisPreferences.incrementLessonCompletedPref(mContext);
-            ZodisWidgetService.startActionUpdateAllWidgets(mContext);*/
-
             Intent intent = new Intent(mContext, LessonActivity.class);
             intent.putExtra(LessonActivity.KEY_LESSON_ID,lessonId);
             intent.putExtra(LessonActivity.KEY_LEVEL_NAME,levelName);

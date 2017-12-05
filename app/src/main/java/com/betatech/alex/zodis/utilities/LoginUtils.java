@@ -28,7 +28,9 @@ public class LoginUtils {
                 .build();
 
         // Build a GoogleApiClient with the options specified by gso.
+
         return new GoogleApiClient.Builder(context)
+
                 .enableAutoManage( (FragmentActivity)context, listener)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();

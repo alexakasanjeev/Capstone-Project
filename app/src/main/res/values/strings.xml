@@ -1,17 +1,19 @@
 <resources>
-    <string name="app_name">Zodis</string>
+    <string name="app_name" translatable="false">Zodis</string>
     <string name="content_authority">com.betatech.alex.zodis</string>
 
+    <!--Main Activity-->
+    <string name="text_learn">Learn</string>
+    <string name="text_insights">Insights</string>
+    <string name="text_settings">Settings</string>
 
     <!-- Login Activity  -->
     <string name="btn_logout_from_google">Logout from Google</string>
     <string name="btn_revoke_access">Revoke Access</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
-    <string name="text_learn">Learn</string>
-    <string name="text_insights">Insights</string>
-    <string name="text_settings">Settings</string>
 
+    <!--Table header-->
     <string name="root_header">Root word</string>
     <string name="derived_header">Derived word</string>
     <string name="description_header">Meaning</string>
@@ -38,4 +40,37 @@
     <!--Unique KEY for setTag method in LevelsAdapter-->
     <string name="KEY_LESSON_ID" translatable="false">lesson_id</string>
     <string name="KEY_LESSON_NAME" translatable="false">lesson_name</string>
+    <string name="al_button_quiz">Quiz</string>
+    <string name="aq_button_check_message">Check</string>
+    <string name="question_frame">What does %1$s means?</string>
+    <string name="correct_message">Correct!</string>
+    <string name="aq_button_continue_message">Continue</string>
+    <string name="wrong_message">Wrong!</string>
+    <string name="cancel_dialog_title">Do you really want to quit?</string>
+    <string name="cancel_dialog_description">All progress in this session will be lost.</string>
+    <string name="cancel_dialog_positive_text">Cancel</string>
+    <string name="cancel_dialog_negative_text">Quit</string>
+    <string name="right_answer_message">Correct answer is : %1$s</string>
+
+
+    <string name="sign_in_button_text">Sign In</string>
+    <string name="skip_button_text">Skip</string>
+
+
+    <!-- Content description for all buttons and image to better support accessibility-->
+    <string name="cancel_button_content_description">Click to exit this activity</string>
+    <string name="check_button_content_description">Click to check whether your selected answer is correct or not</string>
+    <string name="button_left_content_description">Click to swipe left</string>
+    <string name="quiz_button_content_description">Click to start the Quiz</string>
+    <string name="button_right_content_description">Click to swipe right</string>
+    <string name="skip_button_content_description">Click to skip login process</string>
+    <string name="image_view_user_pic_content_description">Placeholder to display user profile picture</string>
+
+    <string name="radio_button_one_content_description">Choice first</string>
+    <string name="radio_button_two_content_description">Choice second</string>
+    <string name="radio_button_three_content_description">Choice third</string>
+    <string name="radio_button_four_content_description">Choice fourth</string>
+    <string name="radio_button_five_content_description">Choice fifth</string>
+    <string name="tick_image_content_description">Image of a check mark</string>
+    <string name="level_image_content_description">Unique image for each level</string>
 </resources>

@@ -6,8 +6,10 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_insights"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/container_width_portrait"
+        android:layout_gravity="center_horizontal"
         android:layout_height="match_parent"
+        android:clipToPadding="false"
         />
 
     <TextView

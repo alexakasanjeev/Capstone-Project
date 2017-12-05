@@ -40,13 +40,13 @@
         android:orientation="horizontal"
         android:paddingLeft="@dimen/double_factor"
         android:paddingRight="@dimen/double_factor"
-        android:layout_marginTop="@dimen/base_factor"
         android:paddingBottom="@dimen/base_factor">
         <ImageButton
             android:id="@+id/image_button_left"
-            android:layout_width="50dp"
+            android:layout_width="@dimen/button_default_height"
             android:layout_height="@dimen/button_default_height"
             app:srcCompat="@drawable/ic_left"
+            android:contentDescription="@string/button_left_content_description"
             android:background="@drawable/selector_button_blue"
             />
 
@@ -55,9 +55,10 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:textColor="@android:color/white"
-            android:text="Quiz"
+            android:text="@string/al_button_quiz"
             android:enabled="false"
             android:stateListAnimator="@null"
+            android:contentDescription="@string/quiz_button_content_description"
             android:layout_height="@dimen/button_default_height"
             android:background="@drawable/selector_button_purple"
             android:layout_marginLeft="@dimen/double_factor"
@@ -66,8 +67,9 @@
 
         <ImageButton
         android:id="@+id/image_button_right"
-            android:layout_width="50dp"
+            android:layout_width="@dimen/button_default_height"
             android:layout_height="@dimen/button_default_height"
+            android:contentDescription="@string/button_right_content_description"
             app:srcCompat="@drawable/ic_right"
             android:background="@drawable/selector_button_blue"/>
 

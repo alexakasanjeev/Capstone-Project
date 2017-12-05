@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -29,6 +30,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -59,6 +62,13 @@ public class UserFragment extends Fragment implements GoogleApiClient.OnConnecti
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // retain this fragment
+        setRetainInstance(true);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -78,12 +88,23 @@ public class UserFragment extends Fragment implements GoogleApiClient.OnConnecti
                     .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                     .build();
             FragmentActivity fragmentActivity;*/
-            mGoogleApiClient = LoginUtils.getGoogleApiClient(getActivity(),this);
+            if (mGoogleApiClient==null) {
+                mGoogleApiClient = LoginUtils.getGoogleApiClient(getActivity(),this);
+            }
         }
 
 
         return view;
     }
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (mGoogleApiClient != null) {
+            mGoogleApiClient.connect();
+        }
+
+    }
+
 
     @Override
     public void onPause() {
@@ -100,6 +121,7 @@ public class UserFragment extends Fragment implements GoogleApiClient.OnConnecti
         super.onStop();
         // stop GoogleApiClient
         if (mGoogleApiClient!=null && mGoogleApiClient.isConnected()) {
+            mGoogleApiClient.stopAutoManage(getActivity());
             mGoogleApiClient.disconnect();
         }
     }
@@ -136,6 +158,7 @@ public class UserFragment extends Fragment implements GoogleApiClient.OnConnecti
             LoginUtils.initUserDetails(getActivity(),result);
             showUserProfile();
         }else{
+            showGuestProfile();
             Log.d(TAG, "handleSignInResult: result failed");
         }
     }
@@ -185,4 +208,5 @@ public class UserFragment extends Fragment implements GoogleApiClient.OnConnecti
         Log.d("TAG","Connection Failed");
         Toast.makeText(getActivity(), "Unable to connect", Toast.LENGTH_SHORT).show();
     }
+
 }
